@@ -1,0 +1,96 @@
+.dropBtn {
+  letter-spacing: 1px;
+  background-color: transparent; /*#9949ff;*/
+  color: black; /*white;*/
+  padding: 5px 5px 5px 0; /*16px;*/
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  line-height: 2px;
+  font-family: "Hepta Slab", serif;
+  font-weight: bolder;
+}
+.dropBtn::before {
+  content: "";
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #fff;
+  position: absolute;
+  bottom: -0.25rem;
+  left: 50%;
+  transition: width 0.4s, left 0.4s;
+}
+.dropBtn:hover::before {
+  width: 100%;
+  left: 0;
+}
+
+.dropBtn:hover,
+.dropBtn:focus {
+  /* background-color: #9949ff; */
+  color: rgb(255, 87, 87);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  min-width: 350px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdownItem {
+  color: black;
+  padding: 5px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdownItem:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+}
+.notiBadge {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
+
+.bttn {
+  position: relative;
+  left: 10px;
+  border-style: none;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  margin-right: 5px;
+  &.Accept:hover {
+    background-color: green;
+  }
+  &.Decline:hover {
+    background-color: red;
+  }
+}
+
+.refreshBtn {
+  border-style: none;
+  margin: 10px;
+}

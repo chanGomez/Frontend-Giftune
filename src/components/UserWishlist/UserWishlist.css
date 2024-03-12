@@ -1,0 +1,103 @@
+.user-wishlist-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0px 30px;
+  z-index: 0;
+}
+
+.user-wishlist {
+  width: 43rem;
+  margin: 0;
+}
+
+.TitleBar {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(23, 22, 22);
+  width: 100%;
+  align-items: center;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #b3b3b3;
+}
+
+.TitleBar h2 {
+  margin: 0;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.TitleBar button {
+  background-color: #a769f8;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.SortByDropdown {
+  margin-top: 5px;
+}
+
+.ErrorMsg {
+  color: rgb(23, 22, 22);
+}
+
+.back-sort-actions {
+  display: flex;
+  align-items: center;
+  padding: 25px 0;
+}
+
+.back-left-arrow-container {
+  display: flex;
+  align-items: left;
+  width: 50rem;
+}
+
+@media screen and (max-width: 800px) {
+  .WishlistItem {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .WishlistItem {
+    width: 90%;
+  }
+  .EditDeleteButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .TitleBar {
+    flex-direction: column;
+    padding-bottom: 10px;
+  }
+
+  .TitleBar h2 {
+    text-align: center;
+  }
+
+  .user-wishlist-container {
+    margin: 0;
+  }
+
+  .back-left-arrow-container {
+    width: auto;
+  }
+
+  .back-sort-action {
+    justify-content: space-around;
+  }
+
+  .user-wishlist {
+    width: auto;
+  }
+}
