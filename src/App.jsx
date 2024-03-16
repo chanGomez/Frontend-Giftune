@@ -1,6 +1,7 @@
 // DEPENDENCIES
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import Navbar from "./components/NavBarMUI/NavBarMUI";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import "react-toastify/dist/ReactToastify.css";
 // import { ToastContainer } from "react-toastify";
@@ -11,6 +12,8 @@ import {
   WishlistContext,
   NotificationContext,
 } from "./components/common/context/context";
+
+import { createTheme, ThemeProvider } from "@mui/material";
 
 const Dashboard = React.lazy(() => import("./components/Dashboard/Dashboard"));
 // const Map = React.lazy(() => import("./components/common/GoogleMaps/Map"));
@@ -85,10 +88,37 @@ function App() {
     setUser(storedUser);
   }, []);
 
+  const theme = createTheme ({
+    palette: {
+      mode: 'light',
+      primary: {
+        main: '#9c27b0',
+      },
+      secondary: {
+        main: '#f50057',
+      },
+      background: {
+        default: '#f3f0ff',
+      },
+      divider: '#9c27b0',
+    },
+    typography: {
+      h1: {
+        fontFamily: 'Monospace',
+      },
+      h2: {
+        fontFamily: 'Monospace',
+      },
+    },
+  })
+  
+
+
   return (
+    <ThemeProvider theme={theme}>
     <React.Suspense fallback={<Spinner />}>
       <Router>
-        <Nav user={user} setUser={setUser} />
+        <Navbar user={user} setUser={setUser} />
         <main className={user ? "page-content-container" : ""}>
           <div className={user ? "page-content" : ""}>
             <NotificationContext.Provider value={NotificationContextValue}>
@@ -190,6 +220,7 @@ function App() {
         <Footer user={user} setUser={setUser} />
       </Router>
     </React.Suspense>
+    </ThemeProvider>
   );
 }
 

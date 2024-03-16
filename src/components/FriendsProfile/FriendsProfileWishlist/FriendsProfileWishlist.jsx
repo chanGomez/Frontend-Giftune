@@ -6,6 +6,7 @@ import confetti from "canvas-confetti";
 import chime from "../../../Assets/chime.mp3";
 import { updateItemBoughtByItemId, newNotification } from "../../API/API";
 import { pullUserFromLocal } from "../../common/FunctionsLibrary";
+import Button from '@mui/material/Button';
 
 function FriendsProfileWishlist({ item, isMuted }) {
   const [is_bought, setis_bought] = useState(item.is_bought);
@@ -119,12 +120,12 @@ function FriendsProfileWishlist({ item, isMuted }) {
               ~ ${item.item_price} <br />
             </div>
             <Link to={item?.link} target="_blank">
-              <button
+              <Button variant="contained" sx={{bgcolor: 'secondary.main'}}
                 className="button-friend-profile-wishlist"
                 disabled={is_bought && assigned_user !== userId ? true : false}
               >
                 Buy Item
-              </button>
+              </Button>
             </Link>
           </div>
         </div>
