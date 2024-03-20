@@ -33,7 +33,7 @@ const EditWishlist = React.lazy(() =>
 const FoundUser = React.lazy(() => import("./components/FoundUser/FoundUser"));
 
 // COMPONENTS
-const SignUpPage = React.lazy(() => import("./components/SignUpPage/Signup"));
+const SignUpPage = React.lazy(() => import("./components/Auth/SignUpPage/Signup"));
 const SearchPage = React.lazy(() =>
   import("./components/SearchPage/SearchPage")
 );
@@ -43,7 +43,7 @@ const SidebarNav = React.lazy(() =>
 );
 const Home = React.lazy(() => import("./components/Home/Home"));
 const Footer = React.lazy(() => import("./components/Footer/Footer"));
-const Login = React.lazy(() => import("./components/Login/Login"));
+const Login = React.lazy(() => import("./components/Auth/Login/Login"));
 const FriendList = React.lazy(() =>
   import("./components/FriendList/FriendList")
 );
@@ -139,7 +139,7 @@ function App() {
                   </NotificationContext.Provider>
                 }
               />
-              <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/sign-up" element={<SignUpPage />} />
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login setUser={setUser} />} />
               <Route path="/users/:id" element={<FoundUser />} />

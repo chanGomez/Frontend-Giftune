@@ -8,7 +8,7 @@ import { calculateZodiacSign } from "../common/Zodiac/CalculateZodiacSign";
 import "./FriendsProfile.css";
 // import { toast } from "react-toastify";
 import { FriendsContext } from "../common/context/context";
-import userProfileImg from "../../Assets/profile-img-red.png";
+// import userProfileImg from "../../Assets/profile-img-red.png";
 
 function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
@@ -124,7 +124,7 @@ function FriendsProfile() {
               src={
                 friendInfoProfile.user_picture
                   ? friendInfoProfile.user_picture
-                  : userProfileImg
+                  : null
               }
             />
             <div className="friend-profile-user-names">

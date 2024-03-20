@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./FoundUser.css";
-import profileImg from "../../Assets/profile-img-red.png";
+// import profileImg from "../../Assets/profile-img-red.png";
 
 import {
   getSpecificUser,

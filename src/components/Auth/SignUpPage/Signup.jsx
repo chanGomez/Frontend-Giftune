@@ -1,7 +1,7 @@
 import "./Signup.css";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { createUser } from "../API/API";
+import { createUser } from "../../API/API";
 // import { toast } from "react-toastify";
 
 function Signup() {

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./SearchList.css";
 import SearchListBtn from "./SearchListBtn";
-import profileImg from "../../Assets/profile-img-red.png";
 import { pullUserFromLocal } from "../common/FunctionsLibrary";
 import { getAllFriendsFromUser } from "../API/API";
 

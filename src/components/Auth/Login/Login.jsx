@@ -2,7 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import { toast } from "react-toastify";
-import { getUserData } from "../API/API";
+import { getUserData } from "../../API/API";
+import { auth } from "../FirebaseAuth/firebaseAuth"
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 import "./Login.css";
 
@@ -21,26 +23,32 @@ function Login({ setUser }) {
     setPassword(e.target.value);
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    try {
-      let user = await getUserData(email);
-      if (!user.data.id) {
-        throw Error;
-      } else {
-        setUser(user.data);
-        window.localStorage.setItem("user", JSON.stringify(user.data));
-        setPassword("");
-        // toast.success("Login Successful", toast.POSITION.TOP_CENTER);
-        navigate(`/dashboard/${user.data.id}`); // This is to go to the dashboard page.
-      }
-      setEmail({
-        email: "",
-      });
-    } catch (error) {
-      // toast.error("User not found", toast.POSITION.TOP_CENTER);
-      // console.log(error);
-    }
+    // try {
+    //   let user = await getUserData(email);
+    //   if (!user.data.id) {
+    //     throw Error;
+    //   } else {
+    //     setUser(user.data);
+    //     window.localStorage.setItem("user", JSON.stringify(user.data));
+    //     setPassword("");
+    //     // toast.success("Login Successful", toast.POSITION.TOP_CENTER);
+    //     navigate(`/dashboard/${user.data.id}`); // This is to go to the dashboard page.
+    //   }
+    //   setEmail({
+    //     email: "",
+    //   });
+    // } catch (error) {
+    //   // toast.error("User not found", toast.POSITION.TOP_CENTER);
+    //   // console.log(error);
+    // }
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log(userCredential)
+    }).catch((e)=>{
+      console.log(e)
+    })
   }
 
   return (

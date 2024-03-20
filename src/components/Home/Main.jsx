@@ -8,10 +8,11 @@ import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
 import marketingImage from '../../Assets/marketing-image.png'
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 
 function Main() {
-
+  const navigate = useNavigate()
   return (
     <Container sx={{ py: 15 }} >
     <Grid container>
@@ -27,7 +28,9 @@ function Main() {
           birthdays, where you can effortlessly select the perfect gift.
           </Typography>
           <Link variant="subtitle1" href="#">
-          <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}>
+          <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}
+          onClick={() => {navigate("/sign-up")}}
+          >
                 SIGN UP
               </Button>
           </Link>

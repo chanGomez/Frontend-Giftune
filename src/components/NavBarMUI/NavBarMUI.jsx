@@ -13,13 +13,25 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-import GiftuneLogo from "../../Assets/Word_logo.png";
+import { NavLink, useNavigate } from "react-router-dom";
+
+
+// import GiftuneLogo from "../../Assets/Word_logo.png";
 
 const pages = ['Find Wishlist', 'Login' ];
 const pagesNotLoggedIn = ['Find Wishlist', 'Login' ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar({user, setUser}) {
+
+  const navigate = useNavigate();
+
+  function handleLogOut() {
+    setUser(null);
+    localStorage.removeItem("user");
+    navigate("/");
+  }
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -164,13 +176,15 @@ function ResponsiveAppBar({user, setUser}) {
 
 
       : 
-      
-      <AppBar position="static">
-      <Container maxWidth="xl" sx={{ maxWidth: 1200 }} >
+      //If there isnt a user logged in -------------------------------------------------------------------------------
+     
+     <AppBar position="static">
+      <Container maxWidth="l" sx={{ maxWidth: 1200 }} >
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           {/* <img className="logo-nav" src={GiftuneLogo} alt="logo"  style={{width: 200, mixBlendMode: 'multiply', filter: "invert()"}}/> */}
 
+          <NavLink to={"/"}>
           <Typography
             variant="h3"
             noWrap
@@ -189,6 +203,7 @@ function ResponsiveAppBar({user, setUser}) {
           >
             Giftune
           </Typography>
+          </NavLink>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -247,7 +262,7 @@ function ResponsiveAppBar({user, setUser}) {
           </Typography>
 
           <Box sx={{ flexGrow: 2, display: { xs: 'none', md: 'flex', justifyContent: "end"}}}>
-          {pagesNotLoggedIn.map((page) => (
+          {/* {pagesNotLoggedIn.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -255,7 +270,23 @@ function ResponsiveAppBar({user, setUser}) {
               >
                 {page}
               </Button>
-            ))}
+            ))} */}
+            {/* <NavLink to={"/search-page"}> */}
+              <Button
+                onClick={() => {navigate("/search-page")}}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Find Wishlist
+              </Button>
+              {/* </NavLink> */}
+              <Button
+               onClick={() => {navigate("/login")}}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Sign In
+              </Button>
+
+
           </Box>
         </Toolbar>
       </Container>
