@@ -81,10 +81,10 @@ function SidebarNav() {
             src={user?.user_picture}
             alt="profile_img"
           />
-          <h2 className="sidebarUsername">{user.user_name}</h2>
+          {/* <h2 className="sidebarUsername">{user.user_name ? user.user_name : "" }</h2> */}
           <p className="sidebarBirthday">
             <TbCake id="cake" size={"1.3rem"} />
-            {user.dob ? formatDate(user.dob) : ""}
+            {/* {user.dob ? formatDate(user.dob) : ""} */}
           </p>
         </div>
 
