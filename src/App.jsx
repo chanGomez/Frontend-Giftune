@@ -13,8 +13,6 @@ import {
   NotificationContext,
 } from "./components/common/context/context";
 
-//google Auth
-
 import { createTheme, ThemeProvider } from "@mui/material";
 
 const Dashboard = React.lazy(() => import("./components/Dashboard/Dashboard"));
@@ -55,6 +53,8 @@ const FriendsProfile = React.lazy(() =>
 const EditableUserProfile = React.lazy(() =>
   import("./components/Dashboard/EditableUserProfile/EditableUserProfile")
 );
+
+import Questionnaire from "./components/Questionnire/Questionnaire";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -145,6 +145,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login setUser={setUser} />} />
               <Route path="/users/:id" element={<FoundUser />} />
+              <Route path="/questionnaire" element={<Questionnaire />} />
               <Route
                 path="/dashboard/:id/new"
                 element={

@@ -40,7 +40,8 @@ function Login({ setUser }) {
       document.getElementById("signInDiv"),
       {theme: "outline", 
       size: "large",
-      width: 300,}
+      width: 300,
+      height: 100}
     )
 
   }, [])
@@ -101,7 +102,7 @@ function Login({ setUser }) {
           <div className="Section">
             <p className="Text">
               Don't have an account?{" "}
-              <Link to={"/signup"} className="Link">
+              <Link to={"/sign-up"} className="Link">
                 Sign up here
               </Link>
             </p>

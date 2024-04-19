@@ -13,29 +13,33 @@ import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
 import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
 import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import ExtensionIcon from '@mui/icons-material/Extension';
+import Calender from '../../Assets/mix-calendar-icon.png'
 
 const items = [
   {
-    icon: <ViewQuiltRoundedIcon />,
-    title: 'Dashboard',
+    icon: <CardGiftcardIcon />,
+    title: 'Gift Registry',
     description:
-      'This item could provide a snapshot of the most important metrics or data points related to the product.',
-    imageLight: 'url("/static/images/templates/templates-images/dash-light.png")',
-    imageDark: 'url("/static/images/templates/templates-images/dash-dark.png")',
-  },
-  {
-    icon: <EdgesensorHighRoundedIcon />,
-    title: 'Mobile integration',
-    description:
-      'This item could provide information about the mobile app version of the product.',
+      'Add items to your wishlist with ease. And get notifed once an item is purchased.',
     imageLight: 'url("/static/images/templates/templates-images/mobile-light.png")',
     imageDark: 'url("/static/images/templates/templates-images/mobile-dark.png")',
   },
   {
-    icon: <DevicesRoundedIcon />,
-    title: 'Available on all platforms',
+    icon: <NotificationsIcon />,
+    title: 'Email Alerts',
     description:
-      'This item could let users know the product is available on all platforms, such as web, mobile, and desktop.',
+      'Stay up to date with the most upcoming or current important dates of your loved ones.',
+    imageLight:` url(${Calender})`,
+    imageDark: 'url("../Assets/mix-calender-icon.png")',
+  },
+  {
+    icon: <ExtensionIcon />,
+    title: 'Chrome Extension',
+    description:
+      'Coming soon a chrome extension to easily plug in your items while shopping.',
     imageLight: 'url("/static/images/templates/templates-images/devices-light.png")',
     imageDark: 'url("/static/images/templates/templates-images/devices-dark.png")',
   },
@@ -63,9 +67,7 @@ export default function Features() {
               color="text.secondary"
               sx={{ mb: { xs: 2, sm: 4 } }}
             >
-              Here you can provide a brief overview of the key features of the
-              product. For example, you could list the number of features, the types
-              of features, add-ons, or the benefits of the features.
+              Every thing you need to ensure the perfect gift.
             </Typography>
           </div>
           <Grid container item gap={1} sx={{ display: { xs: 'auto', sm: 'none' } }}>
@@ -89,7 +91,7 @@ export default function Features() {
                   },
                   backgroundColor: selectedItemIndex === index ? 'primary.main' : '',
                   '& .MuiChip-label': {
-                    color: selectedItemIndex === index ? '#fff' : '',
+                    color: selectedItemIndex === index ? '#f3f0ff' : '',
                   },
                 }}
               />
@@ -112,6 +114,7 @@ export default function Features() {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 minHeight: 280,
+                backgroundRepeat: 'no-repeat'
               }}
             />
             <Box sx={{ px: 2, pb: 2 }}>
@@ -121,7 +124,7 @@ export default function Features() {
               <Typography color="text.secondary" variant="body2" sx={{ my: 0.5 }}>
                 {selectedFeature.description}
               </Typography>
-              <Link
+              {/* <Link
                 color="primary"
                 variant="body2"
                 fontWeight="bold"
@@ -137,7 +140,7 @@ export default function Features() {
                   fontSize="small"
                   sx={{ mt: '1px', ml: '2px' }}
                 />
-              </Link>
+              </Link> */}
             </Box>
           </Box>
           <Stack
@@ -191,7 +194,7 @@ export default function Features() {
                         }
                         return selectedItemIndex === index
                           ? 'primary.main'
-                          : 'grey.700';
+                          : 'grey.200';
                       },
                     }}
                   >
@@ -212,7 +215,7 @@ export default function Features() {
                     >
                       {description}
                     </Typography>
-                    <Link
+                    {/* <Link
                       color="primary"
                       variant="body2"
                       fontWeight="bold"
@@ -231,7 +234,7 @@ export default function Features() {
                         fontSize="small"
                         sx={{ mt: '1px', ml: '2px' }}
                       />
-                    </Link>
+                    </Link> */}
                   </Box>
                 </Box>
               </Card>
@@ -251,14 +254,18 @@ export default function Features() {
               width: '100%',
               display: { xs: 'none', sm: 'flex' },
               pointerEvents: 'none',
+              backgroundColor: '#f3f0ff'
             }}
           >
             <Box
               sx={{
                 m: 'auto',
-                width: 420,
+                width: 320,
                 height: 500,
                 backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                backgroundColor: '#f3f0ff',
+                backgroundPosition: 'center',
                 backgroundImage: (theme) =>
                   theme.palette.mode === 'light'
                     ? items[selectedItemIndex].imageLight
