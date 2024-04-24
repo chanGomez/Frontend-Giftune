@@ -19,6 +19,7 @@ function Main() {
         <Grid
           xs={6}
           sx={{ py: 10 }}
+          item={true}
         >
           <Typography component="h1" variant="h2" color="inherit" gutterBottom>
             Gift what they love to who you love.
@@ -35,7 +36,7 @@ function Main() {
               </Button>
           </Link>
         </Grid>
-        <Grid xs={6}>
+        <Grid xs={6} item={true}>
         <img src={marketingImage} alt={"marketingImage"}  style={{ width: 600}}/>
         </Grid>
     </Grid>

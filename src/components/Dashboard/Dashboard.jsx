@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { getUserProfile } from "../API/API";
 import { calculateZodiacSign } from "../common/Zodiac/CalculateZodiacSign";
 import { FriendsContext } from "../common/context/context";
-// import profileImg from "../../Assets/profile-img-yellow.png";
 // import Events from "../common/Events/Events";
 import "./Dashboard.css";
 

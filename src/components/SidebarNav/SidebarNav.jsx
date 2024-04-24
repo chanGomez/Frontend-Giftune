@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 // import Notification from "../Notification/Notification";
-// import userProfileImg from "../../Assets/profile-img-yellow.png";
 import { FriendsContext, NotificationContext } from "../common/context/context";
 import { getAllFriendsFromUser, getNotificationById } from "../API/API";
 import { TbCake } from "react-icons/tb";

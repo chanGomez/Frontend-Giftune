@@ -1,7 +1,6 @@
 import React from "react";
 import "./FriendInList.css";
 import { Link } from "react-router-dom";
-// import profileImg from "../../../Assets/profile-img-yellow.png";
 
 function FriendInList({ id, friendsList }) {
   return (

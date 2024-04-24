@@ -188,7 +188,7 @@ function ResponsiveAppBar({user, setUser}) {
           <Typography
             variant="h3"
             noWrap
-            component="a"
+            // component="a"
             href="#app-bar-with-responsive-menu"
             sx={{
               // ml: 5,
