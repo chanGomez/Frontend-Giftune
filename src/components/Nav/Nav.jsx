@@ -1,7 +1,7 @@
 import "./Nav.css";
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import GiftuneLogo from "../../Assets/image_360.png";
+import GiftuneLogo from "../../Assets/Word_logo.png";
 import Hamburger from "./Hamburger";
 import OpenHamburger from "./OpenHamburger";
 
