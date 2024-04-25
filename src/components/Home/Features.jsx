@@ -17,16 +17,10 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import Calender from '../../Assets/mix-calendar-icon.png'
+import List from '../../Assets/list.png'
+import Icon from '../../Assets/chrome_icon.png'
 
 const items = [
-  {
-    icon: <CardGiftcardIcon />,
-    title: 'Gift Registry',
-    description:
-      'Add items to your wishlist with ease. And get notifed once an item is purchased.',
-    imageLight: 'url("/static/images/templates/templates-images/mobile-light.png")',
-    imageDark: 'url("/static/images/templates/templates-images/mobile-dark.png")',
-  },
   {
     icon: <NotificationsIcon />,
     title: 'Email Alerts',
@@ -36,11 +30,19 @@ const items = [
     imageDark: 'url("../Assets/mix-calender-icon.png")',
   },
   {
+    icon: <CardGiftcardIcon />,
+    title: 'Gift Registry',
+    description:
+      'Add items to your wishlist with ease. And get notifed once an item is purchased.',
+    imageLight:` url(${List})`,
+    imageDark: 'url("/static/images/templates/templates-images/mobile-dark.png")',
+  },
+  {
     icon: <ExtensionIcon />,
     title: 'Chrome Extension',
     description:
       'Coming soon a chrome extension to easily plug in your items while shopping.',
-    imageLight: 'url("/static/images/templates/templates-images/devices-light.png")',
+    imageLight: `url(${Icon})`,
     imageDark: 'url("/static/images/templates/templates-images/devices-dark.png")',
   },
 ];
@@ -89,9 +91,9 @@ export default function Features() {
                     }
                     return selectedItemIndex === index ? 'none' : '';
                   },
-                  backgroundColor: selectedItemIndex === index ? 'primary.main' : '',
+                  backgroundColor: selectedItemIndex === index ? '' : '',
                   '& .MuiChip-label': {
-                    color: selectedItemIndex === index ? '#f3f0ff' : '',
+                    color: selectedItemIndex === index ? '' : '',
                   },
                 }}
               />
@@ -99,7 +101,7 @@ export default function Features() {
           </Grid>
           <Box
             component={Card}
-            variant="outlined"
+            // variant="outlined"
             sx={{
               display: { xs: 'auto', sm: 'none' },
               mt: 4,
@@ -163,7 +165,7 @@ export default function Features() {
                   width: '100%',
                   background: 'none',
                   backgroundColor:
-                    selectedItemIndex === index ? 'action.selected' : undefined,
+                    selectedItemIndex === index ? 'rgb(175, 82, 191, .1)' : undefined,
                   borderColor: (theme) => {
                     if (theme.palette.mode === 'light') {
                       return selectedItemIndex === index
@@ -247,8 +249,8 @@ export default function Features() {
           md={6}
           sx={{ display: { xs: 'none', sm: 'flex' }, width: '100%' }}
         >
-          <Card
-            variant="outlined"
+          <Box
+            // variant="outlined"
             sx={{
               height: '100%',
               width: '100%',
@@ -272,7 +274,7 @@ export default function Features() {
                     : items[selectedItemIndex].imageDark,
               }}
             />
-          </Card>
+          </Box>
         </Grid>
       </Grid>
     </Container>

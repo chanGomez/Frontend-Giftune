@@ -194,7 +194,7 @@ export default function Footer() {
         >
           <IconButton
             color="inherit"
-            href="https://github.com/mui"
+            href="https://github.com/chanGomez"
             aria-label="GitHub"
             sx={{ alignSelf: 'center' }}
           >
@@ -202,7 +202,7 @@ export default function Footer() {
           </IconButton>
           <IconButton
             color="inherit"
-            href="https://www.linkedin.com/company/mui/"
+            href="https://www.linkedin.com/in/chantal-gomez-marte/"
             aria-label="LinkedIn"
             sx={{ alignSelf: 'center' }}
           >
