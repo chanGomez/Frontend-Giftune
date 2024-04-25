@@ -32,6 +32,7 @@ function Main() {
           <Button variant="contained" color="primary" sx={{ flexShrink: 0 , width: 120, height: 50, mt: 2}}
           onClick={() => {navigate("/login")}}
           >
+            
                 SIGN UP
               </Button>
           </Link>
