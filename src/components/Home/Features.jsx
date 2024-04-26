@@ -1,49 +1,50 @@
-
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import Chip from '@mui/material/Chip';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
-import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
-import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
-import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
-import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import ExtensionIcon from '@mui/icons-material/Extension';
-import Calender from '../../Assets/mix-calendar-icon.png'
-import List from '../../Assets/list.png'
-import Icon from '../../Assets/chrome_icon.png'
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import Chip from "@mui/material/Chip";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import DevicesRoundedIcon from "@mui/icons-material/DevicesRounded";
+import EdgesensorHighRoundedIcon from "@mui/icons-material/EdgesensorHighRounded";
+import ViewQuiltRoundedIcon from "@mui/icons-material/ViewQuiltRounded";
+import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import ExtensionIcon from "@mui/icons-material/Extension";
+import Calender from "../../Assets/mix-calendar-icon.png";
+import List from "../../Assets/list.png";
+import Icon from "../../Assets/chrome_icon.png";
 
 const items = [
   {
     icon: <NotificationsIcon />,
-    title: 'Email Alerts',
+    title: "Email Alerts",
     description:
-      'Stay up to date with the most upcoming or current important dates of your loved ones.',
-    imageLight:` url(${Calender})`,
+      "Stay up to date with the most upcoming or current important dates of your loved ones.",
+    imageLight: ` url(${Calender})`,
     imageDark: 'url("../Assets/mix-calender-icon.png")',
   },
   {
     icon: <CardGiftcardIcon />,
-    title: 'Gift Registry',
+    title: "Gift Registry",
     description:
-      'Add items to your wishlist with ease. And get notifed once an item is purchased.',
-    imageLight:` url(${List})`,
-    imageDark: 'url("/static/images/templates/templates-images/mobile-dark.png")',
+      "Add items to your wishlist with ease. And get notifed once an item is purchased.",
+    imageLight: ` url(${List})`,
+    imageDark:
+      'url("/static/images/templates/templates-images/mobile-dark.png")',
   },
   {
     icon: <ExtensionIcon />,
-    title: 'Chrome Extension',
+    title: "Chrome Extension",
     description:
-      'Coming soon a chrome extension to easily plug in your items while shopping.',
+      "Coming soon a chrome extension to easily plug in your items while shopping.",
     imageLight: `url(${Icon})`,
-    imageDark: 'url("/static/images/templates/templates-images/devices-dark.png")',
+    imageDark:
+      'url("/static/images/templates/templates-images/devices-dark.png")',
   },
 ];
 
@@ -62,7 +63,7 @@ export default function Features() {
         <Grid item xs={12} md={6}>
           <div>
             <Typography component="h2" variant="h4" color="text.primary">
-            Features
+              Features
             </Typography>
             <Typography
               variant="body1"
@@ -72,7 +73,12 @@ export default function Features() {
               Every thing you need to ensure the perfect gift.
             </Typography>
           </div>
-          <Grid container item gap={1} sx={{ display: { xs: 'auto', sm: 'none' } }}>
+          <Grid
+            container
+            item
+            gap={1}
+            sx={{ display: { xs: "auto", sm: "none" } }}
+          >
             {items.map(({ title }, index) => (
               <Chip
                 key={index}
@@ -80,20 +86,20 @@ export default function Features() {
                 onClick={() => handleItemClick(index)}
                 sx={{
                   borderColor: (theme) => {
-                    if (theme.palette.mode === 'light') {
-                      return selectedItemIndex === index ? 'primary.light' : '';
+                    if (theme.palette.mode === "light") {
+                      return selectedItemIndex === index ? "primary.light" : "";
                     }
-                    return selectedItemIndex === index ? 'primary.light' : '';
+                    return selectedItemIndex === index ? "primary.light" : "";
                   },
                   background: (theme) => {
-                    if (theme.palette.mode === 'light') {
-                      return selectedItemIndex === index ? 'none' : '';
+                    if (theme.palette.mode === "light") {
+                      return selectedItemIndex === index ? "none" : "";
                     }
-                    return selectedItemIndex === index ? 'none' : '';
+                    return selectedItemIndex === index ? "none" : "";
                   },
-                  backgroundColor: selectedItemIndex === index ? '' : '',
-                  '& .MuiChip-label': {
-                    color: selectedItemIndex === index ? '' : '',
+                  backgroundColor: selectedItemIndex === index ? "" : "",
+                  "& .MuiChip-label": {
+                    color: selectedItemIndex === index ? "" : "",
                   },
                 }}
               />
@@ -103,27 +109,35 @@ export default function Features() {
             component={Card}
             // variant="outlined"
             sx={{
-              display: { xs: 'auto', sm: 'none' },
+              display: { xs: "auto", sm: "none" },
               mt: 4,
             }}
           >
             <Box
               sx={{
                 backgroundImage: (theme) =>
-                  theme.palette.mode === 'light'
+                  theme.palette.mode === "light"
                     ? items[selectedItemIndex].imageLight
                     : items[selectedItemIndex].imageDark,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                backgroundSize: "cover",
+                backgroundPosition: "center",
                 minHeight: 280,
-                backgroundRepeat: 'no-repeat'
+                backgroundRepeat: "no-repeat",
               }}
             />
             <Box sx={{ px: 2, pb: 2 }}>
-              <Typography color="text.primary" variant="body2" fontWeight="bold">
+              <Typography
+                color="text.primary"
+                variant="body2"
+                fontWeight="bold"
+              >
                 {selectedFeature.title}
               </Typography>
-              <Typography color="text.secondary" variant="body2" sx={{ my: 0.5 }}>
+              <Typography
+                color="text.secondary"
+                variant="body2"
+                sx={{ my: 0.5 }}
+              >
                 {selectedFeature.description}
               </Typography>
               {/* <Link
@@ -151,7 +165,7 @@ export default function Features() {
             alignItems="flex-start"
             spacing={2}
             useFlexGap
-            sx={{ width: '100%', display: { xs: 'none', sm: 'flex' } }}
+            sx={{ width: "100%", display: { xs: "none", sm: "flex" } }}
           >
             {items.map(({ icon, title, description }, index) => (
               <Card
@@ -161,48 +175,52 @@ export default function Features() {
                 onClick={() => handleItemClick(index)}
                 sx={{
                   p: 3,
-                  height: 'fit-content',
-                  width: '100%',
-                  background: 'none',
+                  height: "fit-content",
+                  width: "100%",
+                  background: "none",
                   backgroundColor:
-                    selectedItemIndex === index ? 'rgb(175, 82, 191, .1)' : undefined,
+                    selectedItemIndex === index
+                      ? "rgb(175, 82, 191, .1)"
+                      : undefined,
                   borderColor: (theme) => {
-                    if (theme.palette.mode === 'light') {
+                    if (theme.palette.mode === "light") {
                       return selectedItemIndex === index
-                        ? 'primary.light'
-                        : 'grey.200';
+                        ? "primary.light"
+                        : "grey.200";
                     }
-                    return selectedItemIndex === index ? 'primary.dark' : 'grey.800';
+                    return selectedItemIndex === index
+                      ? "primary.dark"
+                      : "grey.800";
                   },
                 }}
               >
                 <Box
                   sx={{
-                    width: '100%',
-                    display: 'flex',
-                    textAlign: 'left',
-                    flexDirection: { xs: 'column', md: 'row' },
-                    alignItems: { md: 'center' },
+                    width: "100%",
+                    display: "flex",
+                    textAlign: "left",
+                    flexDirection: { xs: "column", md: "row" },
+                    alignItems: { md: "center" },
                     gap: 2.5,
                   }}
                 >
                   <Box
                     sx={{
                       color: (theme) => {
-                        if (theme.palette.mode === 'light') {
+                        if (theme.palette.mode === "light") {
                           return selectedItemIndex === index
-                            ? 'primary.main'
-                            : 'grey.300';
+                            ? "primary.main"
+                            : "grey.300";
                         }
                         return selectedItemIndex === index
-                          ? 'primary.main'
-                          : 'grey.200';
+                          ? "primary.main"
+                          : "grey.200";
                       },
                     }}
                   >
                     {icon}
                   </Box>
-                  <Box sx={{ textTransform: 'none' }}>
+                  <Box sx={{ textTransform: "none" }}>
                     <Typography
                       color="text.primary"
                       variant="body2"
@@ -247,29 +265,29 @@ export default function Features() {
           item
           xs={12}
           md={6}
-          sx={{ display: { xs: 'none', sm: 'flex' }, width: '100%' }}
+          sx={{ display: { xs: "none", sm: "flex" }, width: "100%" }}
         >
           <Box
             // variant="outlined"
             sx={{
-              height: '100%',
-              width: '100%',
-              display: { xs: 'none', sm: 'flex' },
-              pointerEvents: 'none',
-              backgroundColor: '#f3f0ff'
+              height: "100%",
+              width: "100%",
+              display: { xs: "none", sm: "flex" },
+              pointerEvents: "none",
+              backgroundColor: "#f3f0ff",
             }}
           >
             <Box
               sx={{
-                m: 'auto',
+                m: "auto",
                 width: 320,
                 height: 500,
-                backgroundSize: 'contain',
-                backgroundRepeat: 'no-repeat',
-                backgroundColor: '#f3f0ff',
-                backgroundPosition: 'center',
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundColor: "#f3f0ff",
+                backgroundPosition: "center",
                 backgroundImage: (theme) =>
-                  theme.palette.mode === 'light'
+                  theme.palette.mode === "light"
                     ? items[selectedItemIndex].imageLight
                     : items[selectedItemIndex].imageDark,
               }}
