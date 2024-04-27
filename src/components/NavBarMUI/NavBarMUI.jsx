@@ -18,7 +18,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 // import GiftuneLogo from "../../Assets/Word_logo.png";
 
-const pages = ['Find Wishlist', 'Login' ];
+const pages = ['Log Out' ];
 const pagesNotLoggedIn = ['Find Wishlist', 'Login' ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -50,31 +50,29 @@ function ResponsiveAppBar({user, setUser}) {
     setAnchorElUser(null);
   };
 
-  return (
-     user ? 
-      <AppBar position="static">
-      <Container maxWidth="xl">
+  return user ? (
+    //LOGGED IN
+    <AppBar position="static">
+      <Container maxWidth="xl" sx={{ maxWidth: 1050 }}>
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
-            variant="h6"
+            variant="h3"
             noWrap
-            component="a"
             href="#app-bar-with-responsive-menu"
             sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              // ml: 5,
+              mr: 5,
+              display: { xs: "none", md: "flex" },
+              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              // letterSpacing: '.3rem',
+              textDecoration: "none",
             }}
           >
             Giftune
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -89,18 +87,18 @@ function ResponsiveAppBar({user, setUser}) {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
@@ -110,7 +108,6 @@ function ResponsiveAppBar({user, setUser}) {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -118,47 +115,50 @@ function ResponsiveAppBar({user, setUser}) {
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: 'monospace',
+              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
             }}
           >
             Giftune
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "end",
+            }}
+          >
+            <Button
+              onClick={handleLogOut}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              {pages}
+            </Button>
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
@@ -169,43 +169,39 @@ function ResponsiveAppBar({user, setUser}) {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
         </Toolbar>
       </Container>
     </AppBar>
-
-
-      : 
-      //If there isnt a user logged in -------------------------------------------------------------------------------
-     
-     <AppBar position="static">
-      <Container maxWidth="l" sx={{ maxWidth: 1200 }} >
+  ) : (
+    //NOT LOGGED IN
+    <AppBar position="static">
+      <Container maxWidth="l" sx={{ maxWidth: 1200 }}>
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           {/* <img className="logo-nav" src={GiftuneLogo} alt="logo"  style={{width: 200, mixBlendMode: 'multiply', filter: "invert()"}}/> */}
 
           <NavLink to={"/"}>
-          <Typography
-            variant="h3"
-            noWrap
-            // component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              // ml: 5,
-              mr: 5,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              // letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Giftune
-          </Typography>
+            <Typography
+              variant="h3"
+              noWrap
+              href="#app-bar-with-responsive-menu"
+              sx={{
+                // ml: 5,
+                mr: 5,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                // letterSpacing: '.3rem',
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              Giftune
+            </Typography>
           </NavLink>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -220,18 +216,18 @@ function ResponsiveAppBar({user, setUser}) {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: "block", md: "none" },
               }}
             >
               {pagesNotLoggedIn.map((page) => (
@@ -249,20 +245,25 @@ function ResponsiveAppBar({user, setUser}) {
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: 'monospace',
+              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
             }}
           >
             Giftune
           </Typography>
 
-          <Box sx={{ flexGrow: 2, display: { xs: 'none', md: 'flex', justifyContent: "end"}}}>
-          {/* {pagesNotLoggedIn.map((page) => (
+          <Box
+            sx={{
+              flexGrow: 2,
+              display: { xs: "none", md: "flex", justifyContent: "end" },
+            }}
+          >
+            {/* {pagesNotLoggedIn.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -272,26 +273,27 @@ function ResponsiveAppBar({user, setUser}) {
               </Button>
             ))} */}
             {/* <NavLink to={"/search-page"}> */}
-              <Button
-                onClick={() => {navigate("/search-page")}}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Find Wishlist
-              </Button>
-              {/* </NavLink> */}
-              <Button
-               onClick={() => {navigate("/login")}}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Sign In
-              </Button>
-
-
+            <Button
+              onClick={() => {
+                navigate("/search-page");
+              }}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Find Wishlist
+            </Button>
+            {/* </NavLink> */}
+            <Button
+              onClick={() => {
+                navigate("/login");
+              }}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Sign In
+            </Button>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
-
   );
 }
 export default ResponsiveAppBar;

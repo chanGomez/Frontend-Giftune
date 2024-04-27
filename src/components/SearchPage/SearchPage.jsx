@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./SearchPage.css";
 import SearchList from "./SearchList";
+import SearchIcon from "@mui/icons-material/Search";
 import { getAllUsersAPI } from "../API/API";
 
 function Search() {
@@ -67,14 +68,11 @@ function Search() {
               onChange={(e) => handleChange(e.target.value)}
             />
 
-            <button className="search-page-search-button">
-              <img
-                className="search-icon"
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                src="./images/search-icon.png"
-                alt="Magnifying glass"
-              />
+            <button
+              className="search-page-search-button"
+              style={{ backgroundColor: 'transparent' }}
+            >
+                <SearchIcon />
             </button>
           </div>
           <div className="search-page-results">
