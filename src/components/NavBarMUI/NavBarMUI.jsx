@@ -1,29 +1,44 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
+import { Modal } from "@mui/material";
+import { createPortal } from "react-dom";
+import { useState } from "react";
+import Questionnaire from "../Questionnire/Questionnaire";
+import { doSignInWithGoogle } from "../Auth/Firebase/Auth";
+import { useAuth } from "../common/context/authContext";
 import { NavLink, useNavigate } from "react-router-dom";
-
 
 // import GiftuneLogo from "../../Assets/Word_logo.png";
 
-const pages = ['Log Out' ];
-const pagesNotLoggedIn = ['Find Wishlist', 'Login' ];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ["Log Out"];
+const pagesNotLoggedIn = ["Find Wishlist", "Login"];
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function ResponsiveAppBar({user, setUser}) {
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 14,
+  p: 4,
+};
 
+function ResponsiveAppBar({ user, setUser }) {
   const navigate = useNavigate();
 
   function handleLogOut() {
@@ -31,6 +46,11 @@ function ResponsiveAppBar({user, setUser}) {
     localStorage.removeItem("user");
     navigate("/");
   }
+
+  //modal-----
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -48,6 +68,25 @@ function ResponsiveAppBar({user, setUser}) {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  //auth----
+  const { userLoggedIn } = useAuth();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isSigningIn, setIsSigningIn] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const onGoogleSignIn = (e) => {
+    e.preventDefault();
+    if (!isSigningIn) {
+      setIsSigningIn(true);
+      setUser(user.data);
+      doSignInWithGoogle().catch((err) => {
+        setIsSigningIn(false);
+      });
+    }
   };
 
   return user ? (
@@ -283,13 +322,42 @@ function ResponsiveAppBar({user, setUser}) {
             </Button>
             {/* </NavLink> */}
             <Button
-              onClick={() => {
-                navigate("/login");
-              }}
+              onClick={handleOpen}
               sx={{ my: 2, color: "white", display: "block" }}
             >
               Sign In
             </Button>
+            {open && (
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  {/* if login successfull && and user does not have DOB then do questionaire */}
+                  {userLoggedIn && navigate(`/dashboard/${user.id}/userwishlist`)}
+                  {user ? (
+                    <Questionnaire />
+                  ) : (
+                    <>
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                      >
+                        Sign In with google
+                      </Typography>
+                      <Button onClick={onGoogleSignIn}>
+                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                          GOOGLE
+                        </Typography>
+                      </Button>
+                    </>
+                  )}
+                </Box>
+              </Modal>
+            )}
           </Box>
         </Toolbar>
       </Container>

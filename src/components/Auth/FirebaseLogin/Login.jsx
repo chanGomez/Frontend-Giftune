@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
-import { doSignInWithEmailAndPassword, doSignInWithGoogle} from "../../../firebase/auth";
-import { useAuth } from "../../../contexts/authContext";
+// import { doSignInWithEmailAndPassword, doSignInWithGoogle} from "../../../firebase/auth";
+// import { useAuth } from "../../../contexts/authContext";
+import { Button } from "@mui/material";
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const { userLoggedIn } = useAuth();
 
   const [email, setEmail] = useState("");
@@ -24,6 +25,7 @@ const Login = () => {
     e.preventDefault();
     if (!isSigningIn) {
       setIsSigningIn(true);
+      setUser(user.data);
       doSignInWithGoogle().catch((err) => {
         setIsSigningIn(false);
       });
@@ -32,44 +34,39 @@ const Login = () => {
 
   return (
     <>
-    {userLoggedIn && (<Navigate to={'/dashboard'} replace={true}/>)}
-      <div className="formBox">
-        <form onSubmit={onSubmit} className="Container">
-          <span className="Title">Login</span>
-          <span className="Subtitle">Login with your credentials here!</span>
-          <div className="InputGroup">
-            <input
-              type="text"
-              className="Input"
-              required
-              onChange={handleEmailChange}
-              value={email}
-              placeholder="E-mail"
-              id="email"
-            />
-            <input
-              type="password"
-              className="Input"
-              required
-              onChange={handlePasswordChange}
-              value={password}
-              placeholder="Password"
-              id="password"
-            />
+      {userLoggedIn && <Navigate to={"/dashboard"} replace={true} />}
+      <div
+        className="modal-container"
+        onClick={(e) => {
+          if (e.target.className === "modal-container")
+            closeModal("Modal was closed");
+        }}
+      >
+        <div className="modal">
+          <div
+            className="modal-header"
+            onClick={() => closeModal("Modal was closed")}
+          >
+            <p className="close">&times;</p>
           </div>
-          <button type="submit" className="submitBtn">
-            Login
-          </button>
-          <div id="signInDiv"></div>
-          <div className="Section">
-            <p className="Text">
-              Don't have an account?{" "}
-              <Link to={"/sign-up"} className="Link">
-                Sign up here
-              </Link>
-            </p>
+          <div className="modal-content">{children}</div>
+          <div className="modal-footer">
+            <button
+              type="submit"
+              className="btn btn-submit"
+              onClick={() => onSubmit("Submit button was clicked")}
+            >
+              Submit
+            </button>
+            <button
+              type="submit"
+              className="btn btn-cancel"
+              onClick={() => onCancel("Cancel button was clicked")}
+            >
+              Cancel
+            </button>
           </div>
-        </form>
+        </div>
       </div>
     </>
   );

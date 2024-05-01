@@ -6,21 +6,41 @@ import { doCreateUserWithEmailAndPassword } from "../../../firebase/auth";
 const Register = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setconfirmPassword] = useState("");
-  const [isRegistering, setIsRegistering] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [confirmPassword, setconfirmPassword] = useState("");
+  // const [isRegistering, setIsRegistering] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState("");
 
-  const { userLoggedIn } = useAuth();
+  // const { userLoggedIn } = useAuth();
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    if (!isRegistering) {
-      setIsRegistering(true);
-      await doCreateUserWithEmailAndPassword(email, password);
-    }
-  };
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!isRegistering) {
+  //     setIsRegistering(true);
+  //     await doCreateUserWithEmailAndPassword(email, password);
+  //   }
+  // };
+
+    const { userLoggedIn } = useAuth();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [isSigningIn, setIsSigningIn] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+
+
+    const onGoogleSignIn = (e) => {
+      e.preventDefault();
+      if (!isSigningIn) {
+        setIsSigningIn(true);
+        setUser(user.data);
+        doSignInWithGoogle().catch((err) => {
+          setIsSigningIn(false);
+        });
+      }
+    };
+
 
   return (
     <>
