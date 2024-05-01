@@ -17,8 +17,10 @@ import { createPortal } from "react-dom";
 import { useState } from "react";
 import Questionnaire from "../Questionnire/Questionnaire";
 import { doSignInWithGoogle } from "../Auth/Firebase/Auth";
-import { useAuth } from "../common/context/authContext";
+// import { useAuth } from "../common/context/authContext";
 import { NavLink, useNavigate } from "react-router-dom";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {auth} from "../Auth/Firebase/Firebase"
 
 // import GiftuneLogo from "../../Assets/Word_logo.png";
 
@@ -71,22 +73,23 @@ function ResponsiveAppBar({ user, setUser }) {
   };
 
   //auth----
-  const { userLoggedIn } = useAuth();
+  // const { userLoggedIn } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onGoogleSignIn = (e) => {
-    e.preventDefault();
-    if (!isSigningIn) {
-      setIsSigningIn(true);
-      setUser(user.data);
-      doSignInWithGoogle().catch((err) => {
-        setIsSigningIn(false);
-      });
-    }
+  const onGoogleSignIn = async (e) => {
+  const provider = await new GoogleAuthProvider();
+    return signInWithPopup(auth, provider)
+        // if (!isSigningIn) {
+        //   setIsSigningIn(true);
+        //   setUser(user.data);
+        //   doSignInWithGoogle().catch((err) => {
+        //     setIsSigningIn(false);
+        //   });
+        // }
   };
 
   return user ? (
@@ -336,7 +339,8 @@ function ResponsiveAppBar({ user, setUser }) {
               >
                 <Box sx={style}>
                   {/* if login successfull && and user does not have DOB then do questionaire */}
-                  {userLoggedIn && navigate(`/dashboard/${user.id}/userwishlist`)}
+                  {user &&
+                    navigate(`/dashboard/${user.id}/userwishlist`)}
                   {user ? (
                     <Questionnaire />
                   ) : (
