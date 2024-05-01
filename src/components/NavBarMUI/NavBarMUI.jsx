@@ -75,21 +75,18 @@ function ResponsiveAppBar({ user, setUser }) {
   //auth----
   // const { userLoggedIn } = useAuth();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [isSigningIn, setIsSigningIn] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
   const onGoogleSignIn = async (e) => {
   const provider = await new GoogleAuthProvider();
     return signInWithPopup(auth, provider)
-        // if (!isSigningIn) {
-        //   setIsSigningIn(true);
-        //   setUser(user.data);
-        //   doSignInWithGoogle().catch((err) => {
-        //     setIsSigningIn(false);
-        //   });
-        // }
+        if (!isSigningIn) {
+          setIsSigningIn(true);
+          setUser(user.data);
+          doSignInWithGoogle().catch((err) => {
+            setIsSigningIn(false);
+          });
+        }
   };
 
   return user ? (
