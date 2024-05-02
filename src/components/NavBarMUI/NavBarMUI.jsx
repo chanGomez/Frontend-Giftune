@@ -21,6 +21,7 @@ import { doSignInWithGoogle } from "../Auth/Firebase/Auth";
 import { NavLink, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {auth} from "../Auth/Firebase/Firebase"
+import { createUser } from "../API/API";
 
 // import GiftuneLogo from "../../Assets/Word_logo.png";
 
