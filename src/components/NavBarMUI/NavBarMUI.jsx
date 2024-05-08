@@ -20,10 +20,9 @@ import { doSignInWithGoogle } from "../Auth/Firebase/Auth";
 // import { useAuth } from "../common/context/authContext";
 import { NavLink, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import {auth} from "../Auth/Firebase/Firebase"
+import {auth, provider} from "../Auth/Firebase/Firebase"
 import { createUser } from "../API/API";
-
-// import GiftuneLogo from "../../Assets/Word_logo.png";
+import GoogleSignIn from "../Auth/Modal/GoogleSignIn";
 
 const pages = ["Log Out"];
 const pagesNotLoggedIn = ["Find Wishlist", "Login"];
@@ -73,22 +72,6 @@ function ResponsiveAppBar({ user, setUser }) {
     setAnchorElUser(null);
   };
 
-  //auth----
-  // const { userLoggedIn } = useAuth();
-
-  const [isSigningIn, setIsSigningIn] = useState(false);
-
-  const onGoogleSignIn = async (e) => {
-  const provider = await new GoogleAuthProvider();
-    return signInWithPopup(auth, provider)
-        if (!isSigningIn) {
-          setIsSigningIn(true);
-          setUser(user.data);
-          doSignInWithGoogle().catch((err) => {
-            setIsSigningIn(false);
-          });
-        }
-  };
 
   return user ? (
     //LOGGED IN
@@ -337,25 +320,14 @@ function ResponsiveAppBar({ user, setUser }) {
               >
                 <Box sx={style}>
                   {/* if login successfull && and user does not have DOB then do questionaire */}
-                  {user &&
-                    navigate(`/dashboard/${user.id}/userwishlist`)}
                   {user ? (
-                    <Questionnaire />
+                    user.emailVerified && user.firstTimeLogin ? (
+                      <Questionnaire />
+                    ) : (
+                      navigate(`/dashboard/${user.id}`)
+                    )
                   ) : (
-                    <>
-                      <Typography
-                        id="modal-modal-title"
-                        variant="h6"
-                        component="h2"
-                      >
-                        Sign In with google
-                      </Typography>
-                      <Button onClick={onGoogleSignIn}>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                          GOOGLE
-                        </Typography>
-                      </Button>
-                    </>
+                    <GoogleSignIn />
                   )}
                 </Box>
               </Modal>
