@@ -19,8 +19,6 @@ import Questionnaire from "../Questionnire/Questionnaire";
 import { doSignInWithGoogle } from "../Auth/Firebase/Auth";
 // import { useAuth } from "../common/context/authContext";
 import { NavLink, useNavigate } from "react-router-dom";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import {auth, provider} from "../Auth/Firebase/Firebase"
 import { createUser } from "../API/API";
 import GoogleSignIn from "../Auth/Modal/GoogleSignIn";
 
@@ -319,15 +317,15 @@ function ResponsiveAppBar({ user, setUser }) {
                 aria-describedby="modal-modal-description"
               >
                 <Box sx={style}>
-                  {/* if login successfull && and user does not have DOB then do questionaire */}
+                  {/* if login successfull && and user.firstTimeLogin is false then do questionaire */}
                   {user ? (
-                    user.emailVerified && user.firstTimeLogin ? (
+                    user.emailVerified  === true && user.firstTimeLogin === true ? (
                       <Questionnaire />
                     ) : (
                       navigate(`/dashboard/${user.id}`)
                     )
                   ) : (
-                    <GoogleSignIn />
+                    <GoogleSignIn user={user} setUser={setUser}/>
                   )}
                 </Box>
               </Modal>
