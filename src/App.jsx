@@ -138,7 +138,7 @@ function App() {
             <div className={user ? "page-content" : ""}>
               <NotificationContext.Provider value={NotificationContextValue}>
                 <FriendsContext.Provider value={FriendsContextValue}>
-                  {user && <SidebarNav />}
+                  {user && <SidebarNav user={user} />}
                 </FriendsContext.Provider>
               </NotificationContext.Provider>
               <Routes>

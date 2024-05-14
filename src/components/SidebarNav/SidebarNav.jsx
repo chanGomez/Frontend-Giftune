@@ -6,8 +6,8 @@ import { getAllFriendsFromUser, getNotificationById } from "../API/API";
 import { TbCake } from "react-icons/tb";
 import "./SidebarNav.css";
 
-function SidebarNav() {
-  const [user, setUser] = useState({});
+function SidebarNav({user}) {
+  // const [user, setUser] = useState({});
   const [friendsCount, setFriendsCount] = useState(0);
 
   const { setFriendsData, toggleUpdate, setToggleUpdate } =
@@ -15,12 +15,12 @@ function SidebarNav() {
   const { setNotificationsData } = useContext(NotificationContext);
 
   useEffect(() => {
-    let userFromStorage = localStorage.getItem("user");
-    let storedUser = JSON.parse(userFromStorage);
-    setUser(storedUser);
+    // let userFromStorage = localStorage.getItem("user");
+    // let storedUser = JSON.parse(userFromStorage);
+    // setUser(storedUser);
 
-    fetchFriends(storedUser?.id);
-    getNotifications(storedUser?.id);
+    fetchFriends(user?.id);
+    getNotifications(user?.id);
 
     // eslint-disable-next-line
   }, []);
@@ -28,11 +28,11 @@ function SidebarNav() {
     if (toggleUpdate) {
       fetchFriends(user?.id);
       setToggleUpdate(false);
-      let userFromStorage = localStorage.getItem("user");
-      let storedUser = JSON.parse(userFromStorage);
+      // let userFromStorage = localStorage.getItem("user");
+      // let storedUser = JSON.parse(userFromStorage);
       // console.log(storedUser);
-      getNotifications(storedUser?.id);
-      setUser(storedUser);
+      getNotifications(user?.id);
+      // setUser(storedUser);
     }
     // eslint-disable-next-line
   }, [toggleUpdate]);
@@ -80,7 +80,7 @@ function SidebarNav() {
             src={user?.user_picture}
             alt="profile_img"
           />
-          {/* <h2 className="sidebarUsername">{user.user_name ? user.user_name : "" }</h2> */}
+          <h2 className="sidebarUsername">{user.display_name ? user.display_name : "" }</h2>
           <p className="sidebarBirthday">
             <TbCake id="cake" size={"1.3rem"} />
             {/* {user.dob ? formatDate(user.dob) : ""} */}

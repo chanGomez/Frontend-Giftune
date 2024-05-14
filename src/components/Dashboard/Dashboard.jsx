@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getUserProfile } from "../API/API";
 import { calculateZodiacSign } from "../common/Zodiac/CalculateZodiacSign";
 import { FriendsContext } from "../common/context/context";
+import noFriendsImage from "../../Assets/no-friends.png";
 // import Events from "../common/Events/Events";
 import "./Dashboard.css";
 
@@ -90,11 +91,13 @@ function Dashboard({ user }) {
     );
   });
 
+  console.log(friendsList);
+
   return (
     <>
       <div className="dashboard-container">
         <p className="dashboard-heading">Upcoming Birthdays</p>
-        {friendsList}
+        {friendsList && <img src={noFriendsImage} style={{width: 250}}/>}
       </div>
     </>
   );
