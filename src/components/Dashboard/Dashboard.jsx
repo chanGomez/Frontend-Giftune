@@ -5,19 +5,19 @@ import { getUserProfile } from "../API/API";
 import { calculateZodiacSign } from "../common/Zodiac/CalculateZodiacSign";
 import { FriendsContext } from "../common/context/context";
 import noFriendsImage from "../../Assets/no-friends.png";
+import { pullUserFromLocal } from "../common/FunctionsLibrary";
 // import Events from "../common/Events/Events";
 import "./Dashboard.css";
 
-function Dashboard({ user }) {
+function Dashboard() {
   let navigate = useNavigate();
+  const [user, setUser] = useState(pullUserFromLocal());
   const [dashboardId, setDashboardId] = useState(user.id);
   const [dashboardUser, setDashboardUser] = useState({});
   let currentDate = new Date(Date.now()); // Time from system
-  currentDate.setTime(
-    currentDate.getTime() + currentDate.getTimezoneOffset() * 60 * 1000
-  );
+  currentDate.setTime(currentDate.getTime() + currentDate.getTimezoneOffset() * 60 * 1000);
   const { setFriendsData } = useContext(FriendsContext);
-
+  
   useEffect(() => {
     if (user === null) {
       navigate("/login");
@@ -91,7 +91,7 @@ function Dashboard({ user }) {
     );
   });
 
-  console.log(friendsList);
+  // console.log(friendsList);
 
   return (
     <>

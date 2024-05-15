@@ -70,6 +70,8 @@ function SidebarNav({user}) {
   }
   
   // let userPic = user?.user_picture.includes("http")? user?.user_picture : userProfileImg;
+
+  console.log(user.user_picture)
   
   return (
     <div className="sidebar-nav-container">
@@ -78,9 +80,11 @@ function SidebarNav({user}) {
           <img
             className="sidebarImage"
             src={user?.user_picture}
-            alt="profile_img"
+            alt="Profile Image"
           />
-          <h2 className="sidebarUsername">{user.display_name ? user.display_name : "" }</h2>
+          <h2 className="sidebarUsername">
+            {user.display_name ? user.display_name : ""}
+          </h2>
           <p className="sidebarBirthday">
             <TbCake id="cake" size={"1.3rem"} />
             {/* {user.dob ? formatDate(user.dob) : ""} */}

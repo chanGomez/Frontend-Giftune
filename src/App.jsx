@@ -33,9 +33,6 @@ const EditWishlist = React.lazy(() =>
 const FoundUser = React.lazy(() => import("./components/FoundUser/FoundUser"));
 
 // COMPONENTS
-const SignUpPage = React.lazy(() =>
-  import("./components/Auth/SignUpPage/Signup")
-);
 const SearchPage = React.lazy(() =>
   import("./components/SearchPage/SearchPage")
 );
@@ -45,7 +42,6 @@ const SidebarNav = React.lazy(() =>
 );
 const Home = React.lazy(() => import("./components/Home/Home"));
 const Footer = React.lazy(() => import("./components/Footer/Footer"));
-const Login = React.lazy(() => import("./components/Auth/Login/Login"));
 const FriendList = React.lazy(() =>
   import("./components/FriendList/FriendList")
 );
@@ -60,6 +56,7 @@ import Questionnaire from "./components/Questionnire/Questionnaire";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [successfullLogin, setSuccessfullLogin] = useState(false)
   const [FriendsData, setFriendsData] = useState(null);
   const [WishlistData, setWishlistData] = useState([]);
   const [toggleUpdate, setToggleUpdate] = useState(false);
@@ -87,23 +84,29 @@ function App() {
     setSentRequest,
   };
 
-  async function getUserFromLocalStorageFromDB(user) {
-    try {
-      let userGotByEmail = await getUserData(user.email);
-      setUser(userGotByEmail.data);
-      // console.log("userGotByemail IN APP:", userGotByEmail.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function getUserFromLocalStorageFromDB(user) {
+  //   try {
+  //     let userGotByEmail = await getUserData(user.email);
+  //     console.log("userGotByemail IN APP:", userGotByEmail.data);
+  //     setUser(userGotByEmail.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
+  //use effect only runs on first page load. then set user to data but does not reload again
   useEffect(() => {
-    let storedUser = pullUserFromLocal();
-    getUserFromLocalStorageFromDB(storedUser);
-    // console.log(storedUser.data);
-  }, []);
+    //google obj data
 
-  console.log(user);
+    let storedUser = pullUserFromLocal();
+    {storedUser && setUser(storedUser.data)}
+  console.log(user, "useeffect");
+    //use email to search the db
+    // getUserFromLocalStorageFromDB(storedUser);
+    // console.log(storedUser.data);
+  }, [successfullLogin]);
+
+  console.log(user, "this is APP user!");
 
   const theme = createTheme({
     palette: {
@@ -133,11 +136,13 @@ function App() {
     <ThemeProvider theme={theme}>
       <React.Suspense fallback={<Spinner />}>
         <Router>
-          <Navbar user={user} setUser={setUser} />
+          {/* remove navbar from router */}
+          <Navbar user={user} setUser={setUser} setSuccessfullLogin={setSuccessfullLogin}/>
           <main className={user ? "page-content-container" : ""}>
             <div className={user ? "page-content" : ""}>
               <NotificationContext.Provider value={NotificationContextValue}>
                 <FriendsContext.Provider value={FriendsContextValue}>
+                  {/* move sidebar into dashboard */}
                   {user && <SidebarNav user={user} />}
                 </FriendsContext.Provider>
               </NotificationContext.Provider>
@@ -154,7 +159,7 @@ function App() {
                     </NotificationContext.Provider>
                   }
                 />
-                <Route path="/sign-up" element={<SignUpPage />} />
+                {/* <Route path="/sign-up" element={<SignUpPage />} /> */}
                 <Route path="/" element={<Home />} />
                 {/* <Route path="/login" element={<Login setUser={setUser} />} /> */}
                 <Route path="/users/:id" element={<FoundUser />} />

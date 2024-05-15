@@ -20,7 +20,7 @@ import { doSignInWithGoogle } from "../Auth/Firebase/Auth";
 // import { useAuth } from "../common/context/authContext";
 import { NavLink, useNavigate } from "react-router-dom";
 import { createUser } from "../API/API";
-import GoogleSignIn from "../Auth/Modal/GoogleSignIn";
+import GoogleSignIn from "../Auth/LogIn/GoogleSignIn";
 
 const pages = ["Log Out"];
 const pagesNotLoggedIn = ["Find Wishlist", "Login"];
@@ -38,13 +38,15 @@ const style = {
   p: 4,
 };
 
-function ResponsiveAppBar({ user, setUser }) {
+function ResponsiveAppBar({ user, setUser, setSuccessfullLogin }) {
   const navigate = useNavigate();
 
   function handleLogOut() {
     setUser(null);
     localStorage.removeItem("user");
     navigate("/");
+    setSuccessfullLogin(false);
+    handleClose(false)
   }
 
   //modal-----
@@ -69,7 +71,6 @@ function ResponsiveAppBar({ user, setUser }) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
 
   return user ? (
     //LOGGED IN
@@ -318,15 +319,20 @@ function ResponsiveAppBar({ user, setUser }) {
               >
                 <Box sx={style}>
                   {/* if login successfull && and user.firstTimeLogin is false then do questionaire */}
-                  {user ? (
-                    user.emailVerified  === true && user.firstTimeLogin === true ? (
+                  {/* {user ? (
+                    user.emailVerified === true &&
+                    user.firstTimeLogin === true ? (
                       <Questionnaire />
                     ) : (
                       navigate(`/dashboard/${user.id}`)
                     )
-                  ) : (
-                    <GoogleSignIn user={user} setUser={setUser}/>
-                  )}
+                  ) : ( */}
+                  <GoogleSignIn
+                    user={user}
+                    setUser={setUser}
+                    setSuccessfullLogin={setSuccessfullLogin}
+                  />
+                  {/* )} */}
                 </Box>
               </Modal>
             )}

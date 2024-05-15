@@ -5,26 +5,26 @@ import Typography from "@mui/material/Typography";
 import { createUser, getUserData } from "../../API/API";
 import Button from "@mui/material/Button";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth, provider } from "../../Auth/Firebase/Firebase";
+import { auth, provider } from "../Firebase/Firebase";
 import { pullUserFromLocal } from "../../common/FunctionsLibrary";
 
-function GoogleSignIn(setUser, user) {
+function GoogleSignIn({ user, setUser, setSuccessfullLogin }) {
   const navigate = useNavigate();
-  const [userEmail, setUserEmail] = useState("");
 
-  const onGoogleSignIn = async (e) => {
+  console.log(setUser);
+
+  const onGoogleSignIn = (e) => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const userData = result.user;
-        setUserEmail(userData.email);
 
         navigateUser({
           user_picture: userData.photoURL,
           display_name: userData.displayName,
           email: userData.email,
         });
-
-        localStorage.setItem("user", JSON.stringify(userData));
+        setSuccessfullLogin(true)
+        // localStorage.setItem("user", JSON.stringify(userData));
       })
       .catch((e) => {
         console.log(e);
@@ -33,21 +33,23 @@ function GoogleSignIn(setUser, user) {
 
   async function navigateUser(user) {
     try {
+
       let userGotByEmail = await getUserData(user.email);
+      // console.log("userGotByemail:", userGotByEmail);
 
-      console.log("userGotByemail:", userGotByEmail);
-
+      console.log("use google sign", userGotByEmail.data);
       //If user is not found in database then create user
       if (!userGotByEmail.data) {
         //create a user
-        const userFromDatabase = await createUser(user);
-        console.log("user ID", userFromDatabase.data.id);
-        navigate(`/dashboard/${userFromDatabase.data.id}`); // This is to go to the dashboard page.
-      } else {
-        //user found in database
-        console.log("user ID", userGotByEmail.data.id);
-        navigate(`/dashboard/${userGotByEmail.data.id}`); // This is to go to the dashboard page.
+        let newUser = await createUser(user);
+        // console.log("user ID", userFromDatabase.data.id);
+        userGotByEmail = newUser;
       }
+      console.log("this is where naviagte happens");
+      setUser(userGotByEmail.data);
+
+      navigate(`/dashboard/${userGotByEmail.data.id}`); // This is to go to the dashboard page.
+      localStorage.setItem("user", JSON.stringify(userGotByEmail.data));
     } catch (error) {
       // toast.error("User not found", toast.POSITION.TOP_CENTER);
       console.log(error);
