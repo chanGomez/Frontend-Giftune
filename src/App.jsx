@@ -57,6 +57,7 @@ import Questionnaire from "./components/Questionnire/Questionnaire";
 function App() {
   const [user, setUser] = useState(null);
   const [successfullLogin, setSuccessfullLogin] = useState(false)
+  const [isLoading, setIsLoading] = useState()
   const [FriendsData, setFriendsData] = useState(null);
   const [WishlistData, setWishlistData] = useState([]);
   const [toggleUpdate, setToggleUpdate] = useState(false);
@@ -84,29 +85,13 @@ function App() {
     setSentRequest,
   };
 
-  // async function getUserFromLocalStorageFromDB(user) {
-  //   try {
-  //     let userGotByEmail = await getUserData(user.email);
-  //     console.log("userGotByemail IN APP:", userGotByEmail.data);
-  //     setUser(userGotByEmail.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  //use effect only runs on first page load. then set user to data but does not reload again
   useEffect(() => {
-    //google obj data
-
+   
     let storedUser = pullUserFromLocal();
     {storedUser && setUser(storedUser.data)}
-  console.log(user, "useeffect");
-    //use email to search the db
-    // getUserFromLocalStorageFromDB(storedUser);
-    // console.log(storedUser.data);
+
   }, [successfullLogin]);
 
-  console.log(user, "this is APP user!");
 
   const theme = createTheme({
     palette: {
@@ -137,7 +122,12 @@ function App() {
       <React.Suspense fallback={<Spinner />}>
         <Router>
           {/* remove navbar from router */}
-          <Navbar user={user} setUser={setUser} setSuccessfullLogin={setSuccessfullLogin}/>
+          <Navbar
+            user={user}
+            setUser={setUser}
+            setSuccessfullLogin={setSuccessfullLogin}
+            setIsLoading={setIsLoading}
+          />
           <main className={user ? "page-content-container" : ""}>
             <div className={user ? "page-content" : ""}>
               <NotificationContext.Provider value={NotificationContextValue}>

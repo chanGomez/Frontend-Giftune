@@ -2,10 +2,9 @@ import React from "react";
 import "./Spinner.css";
 function Spinner() {
   return (
-    <div className="spinner-parent">
-      <div className="spinner-container">
-        <div className="custom-loader"></div>
-      </div>
+    <div className="blocks">
+      <div className="block orange"></div>
+      <div className="block blue"></div>
     </div>
   );
 }

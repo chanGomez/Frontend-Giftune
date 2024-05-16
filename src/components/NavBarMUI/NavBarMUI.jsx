@@ -38,7 +38,7 @@ const style = {
   p: 4,
 };
 
-function ResponsiveAppBar({ user, setUser, setSuccessfullLogin }) {
+function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading }) {
   const navigate = useNavigate();
 
   function handleLogOut() {
@@ -331,6 +331,7 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin }) {
                     user={user}
                     setUser={setUser}
                     setSuccessfullLogin={setSuccessfullLogin}
+                    setIsLoading={setIsLoading}
                   />
                   {/* )} */}
                 </Box>

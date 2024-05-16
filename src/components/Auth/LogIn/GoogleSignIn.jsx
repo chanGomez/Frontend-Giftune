@@ -8,7 +8,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../Firebase/Firebase";
 import { pullUserFromLocal } from "../../common/FunctionsLibrary";
 
-function GoogleSignIn({ user, setUser, setSuccessfullLogin }) {
+function GoogleSignIn({ user, setUser, setSuccessfullLogin, setIsLoading }) {
   const navigate = useNavigate();
 
   console.log(setUser);
@@ -17,14 +17,14 @@ function GoogleSignIn({ user, setUser, setSuccessfullLogin }) {
     signInWithPopup(auth, provider)
       .then((result) => {
         const userData = result.user;
-
+        
         navigateUser({
           user_picture: userData.photoURL,
           display_name: userData.displayName,
           email: userData.email,
         });
-        setSuccessfullLogin(true)
-        // localStorage.setItem("user", JSON.stringify(userData));
+        setIsLoading(true)
+        setSuccessfullLogin(true);
       })
       .catch((e) => {
         console.log(e);
@@ -33,25 +33,21 @@ function GoogleSignIn({ user, setUser, setSuccessfullLogin }) {
 
   async function navigateUser(user) {
     try {
-
       let userGotByEmail = await getUserData(user.email);
-      // console.log("userGotByemail:", userGotByEmail);
-
-      console.log("use google sign", userGotByEmail.data);
-      //If user is not found in database then create user
+      console.log("userFetchedFromBackend", userGotByEmail.data);
+      
       if (!userGotByEmail.data) {
-        //create a user
         let newUser = await createUser(user);
-        // console.log("user ID", userFromDatabase.data.id);
         userGotByEmail = newUser;
+        console.log("userFetchedFromBackendCreated", userGotByEmail.data);
       }
-      console.log("this is where naviagte happens");
       setUser(userGotByEmail.data);
 
-      navigate(`/dashboard/${userGotByEmail.data.id}`); // This is to go to the dashboard page.
+      {userGotByEmail.data.id && navigate(`/dashboard/${userGotByEmail.data.id}`)};
+
+      setIsLoading(false)
       localStorage.setItem("user", JSON.stringify(userGotByEmail.data));
     } catch (error) {
-      // toast.error("User not found", toast.POSITION.TOP_CENTER);
       console.log(error);
     }
   }
