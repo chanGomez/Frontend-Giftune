@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../Firebase/Firebase";
 import { pullUserFromLocal } from "../../common/FunctionsLibrary";
+import "./GoogleSignIn.css";
 
 function GoogleSignIn({ user, setUser, setSuccessfullLogin, setIsLoading }) {
   const navigate = useNavigate();
@@ -54,14 +55,19 @@ function GoogleSignIn({ user, setUser, setSuccessfullLogin, setIsLoading }) {
 
   return (
     <>
-      <Typography id="modal-modal-title" variant="h6" component="h2">
-        Sign In with google
+      <Typography id="modal-modal-title" variant="h5" component="h2" sx={{ }}>
+        Sign in with google.
       </Typography>
-      <Button onClick={onGoogleSignIn}>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          GOOGLE
-        </Typography>
-      </Button>
+      <Typography id="modal-modal-title" variant="h6" component="h2">
+        No password setup required.
+      </Typography>
+      <button
+        onClick={onGoogleSignIn}
+        type="button"
+        class="login-with-google-btn"
+      >
+        <Typography>Sign In with google</Typography>
+      </button>
     </>
   );
 }
