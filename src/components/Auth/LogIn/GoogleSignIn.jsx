@@ -54,21 +54,43 @@ function GoogleSignIn({ user, setUser, setSuccessfullLogin, setIsLoading }) {
   }
 
   return (
-    <>
-      <Typography id="modal-modal-title" variant="h5" component="h2" sx={{ }}>
-        Sign in with google.
+    <div className="google-modal-conatiner"
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      <Typography
+        id="modal-modal-title"
+        variant="h5"
+        component="h2"
+        sx={{
+          fontWeight: 600,
+          padding: 1,
+          textDecoration: "underLine",
+          textUnderlineOffset: 3,
+        }}
+      >
+        Sign In
       </Typography>
-      <Typography id="modal-modal-title" variant="h6" component="h2">
-        No password setup required.
+      <Typography
+        id="modal-modal-title"
+        sx={{ color: "#757575", padding: 2, fontWeight: 400, width: " 80%" }}
+      >
+        No password setup required. Sign in to start your wishlist.
       </Typography>
       <button
         onClick={onGoogleSignIn}
         type="button"
         class="login-with-google-btn"
+        style={{ display: "flex", margin: 10 }}
       >
-        <Typography>Sign In with google</Typography>
+        <img
+          id="google_icon"
+          src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"
+        />
+        <Typography sx={{ fontSize: 20, padding: 2 }}>
+          Sign in with Google
+        </Typography>
       </button>
-    </>
+    </div>
   );
 }
 

@@ -6,6 +6,7 @@ import { calculateZodiacSign } from "../common/Zodiac/CalculateZodiacSign";
 import { FriendsContext } from "../common/context/context";
 import noFriendsImage from "../../Assets/no-friends.png";
 import { pullUserFromLocal } from "../common/FunctionsLibrary";
+import NoFriendsFound from "../common/NoResults/NoFriendsFound";
 // import Events from "../common/Events/Events";
 import "./Dashboard.css";
 
@@ -96,8 +97,8 @@ function Dashboard() {
   return (
     <>
       <div className="dashboard-container">
-        <p className="dashboard-heading">Upcoming Birthdays</p>
-        {friendsList && <img src={noFriendsImage} style={{width: 250}}/>}
+        {/* <p className="dashboard-heading">Upcoming Birthdays</p> */}
+        {friendsList && <NoFriendsFound/> }
       </div>
     </>
   );

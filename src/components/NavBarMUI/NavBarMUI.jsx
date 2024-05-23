@@ -21,21 +21,25 @@ import { doSignInWithGoogle } from "../Auth/Firebase/Auth";
 import { NavLink, useNavigate } from "react-router-dom";
 import { createUser } from "../API/API";
 import GoogleSignIn from "../Auth/LogIn/GoogleSignIn";
+import { Padding } from "@mui/icons-material";
 
 const pages = ["Log Out"];
 const pagesNotLoggedIn = ["Find Wishlist", "Login"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const style = {
+  backgroundImage: "linear-gradient(120deg, #fdfbfb 0%, #e5dcea 100%)",
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 420,
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  // border: "2px solid #000",
   boxShadow: 14,
   p: 4,
+  borderRadius: 3,
+  // padding: 5
 };
 
 function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading }) {
@@ -75,7 +79,7 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading }) 
   return user ? (
     //LOGGED IN
     <AppBar position="static">
-      <Container maxWidth="xl" sx={{ maxWidth: 1050 }}>
+      <Container maxWidth="xl" sx={{ maxWidth: 1200 }}>
         <Toolbar disableGutters>
           <Typography
             variant="h3"
@@ -316,6 +320,7 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading }) 
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+                sx={{borderRadius: 20}}
               >
                 <Box sx={style}>
                   {/* if login successfull && and user.firstTimeLogin is false then do questionaire */}
