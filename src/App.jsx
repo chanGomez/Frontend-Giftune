@@ -128,14 +128,8 @@ function App() {
             setSuccessfullLogin={setSuccessfullLogin}
             setIsLoading={setIsLoading}
           />
-          <main className={user ? "page-content-container" : ""}>
-            <div className={user ? "page-content" : ""}>
-              <NotificationContext.Provider value={NotificationContextValue}>
-                <FriendsContext.Provider value={FriendsContextValue}>
-                  {/* move sidebar into dashboard */}
-                  {user && <SidebarNav user={user} />}
-                </FriendsContext.Provider>
-              </NotificationContext.Provider>
+          <main className={pullUserFromLocal() ? "page-content-container" : ""}>
+            <div className={pullUserFromLocal() ? "page-content" : ""}>
               <Routes>
                 <Route
                   path="/search-page"
@@ -193,9 +187,13 @@ function App() {
                 <Route
                   path="/dashboard/:id"
                   element={
-                    <FriendsContext.Provider value={FriendsContextValue}>
-                      <Dashboard user={user} />
-                    </FriendsContext.Provider>
+                    <NotificationContext.Provider
+                      value={NotificationContextValue}
+                    >
+                      <FriendsContext.Provider value={FriendsContextValue}>
+                        <Dashboard user={user} />
+                      </FriendsContext.Provider>
+                    </NotificationContext.Provider>
                   }
                 />
 

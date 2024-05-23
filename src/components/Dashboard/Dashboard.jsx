@@ -7,6 +7,8 @@ import { FriendsContext } from "../common/context/context";
 import noFriendsImage from "../../Assets/no-friends.png";
 import { pullUserFromLocal } from "../common/FunctionsLibrary";
 import NoFriendsFound from "../common/NoResults/NoFriendsFound";
+import SidebarNav from "../SidebarNav/SidebarNav";
+import SideBarNavMui from "./SideBarNavMui/SideBarNavMui";
 // import Events from "../common/Events/Events";
 import "./Dashboard.css";
 
@@ -96,9 +98,10 @@ function Dashboard() {
 
   return (
     <>
+      {user && <SideBarNavMui user={user} />}
       <div className="dashboard-container">
         {/* <p className="dashboard-heading">Upcoming Birthdays</p> */}
-        {friendsList && <NoFriendsFound/> }
+        {friendsList && <NoFriendsFound />}
       </div>
     </>
   );

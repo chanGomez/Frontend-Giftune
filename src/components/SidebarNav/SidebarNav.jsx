@@ -83,7 +83,7 @@ function SidebarNav({user}) {
             alt="Profile Image"
           />
           <h2 className="sidebarUsername">
-            {user.display_name ? user.display_name : ""}
+            {user?.display_name}
           </h2>
           <p className="sidebarBirthday">
             <TbCake id="cake" size={"1.3rem"} />

@@ -19,7 +19,7 @@ function NoFriendsFound() {
           width: "30%",
           borderRadius: "120px 20px 120px 20px",
           position: 20,
-          margin: 10
+          margin: 10,
         }}
       />
       <div
@@ -39,7 +39,7 @@ function NoFriendsFound() {
             color: "#757575",
             letterSpacing: 0.7,
             lineHeight: 1.5,
-            marginTop: -10
+            marginTop: -10,
           }}
         >
           {" "}
