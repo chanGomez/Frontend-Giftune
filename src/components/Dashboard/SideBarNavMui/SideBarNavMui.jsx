@@ -15,7 +15,12 @@ import PermMedia from "@mui/icons-material/PermMedia";
 import Dns from "@mui/icons-material/Dns";
 import Public from "@mui/icons-material/Public";
 import Typography from "@mui/material/Typography";
-
+import HomeIcon from "@mui/icons-material/Home";
+import PersonSearchIcon from "@mui/icons-material/PersonSearch";
+import PeopleIcon from "@mui/icons-material/People";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import SettingsIcon from "@mui/icons-material/Settings";
 //
 import { styled, ThemeProvider, createTheme } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
@@ -27,19 +32,46 @@ import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import Home from "@mui/icons-material/Home";
 import Settings from "@mui/icons-material/Settings";
 import getLPTheme from "../../../getLPTheme";
-
-
-const data = [
-  { icon: <People />, label: "Authentication" },
-  { icon: <Dns />, label: "Database" },
-  { icon: <PermMedia />, label: "Storage" },
-  { icon: <Public />, label: "Hosting" },
-];
+import "../../../App.css"
 
 function SideBarNavMui({user}) {
   const [friendsCount, setFriendsCount] = useState(0);
   const { setFriendsData, toggleUpdate, setToggleUpdate } = useContext(FriendsContext);
   const { setNotificationsData } = useContext(NotificationContext);
+
+
+  const data = [
+    {
+      icon: <HomeIcon />,
+      label: "Home",
+      route: `/dashboard/${user?.id}`,
+    },
+    {
+      icon: <PersonSearchIcon />,
+      label: "Explore",
+      route: `/search-page`,
+    },
+    {
+      icon: <PeopleIcon />,
+      label: "Friends",
+      route: `/dashboard/${user?.id}/friends`,
+    },
+    {
+      icon: <FormatListBulletedIcon />,
+      label: "Wishlist",
+      route: `/dashboard/${user?.id}/userwishlist`,
+    },
+    {
+      icon: <NotificationsIcon />,
+      label: "Notifications",
+      route: `/dashboard/notification`,
+    },
+    {
+      icon: <SettingsIcon />,
+      label: "Settings",
+      route: `/dashboard/${user?.id}/editProfile`,
+    },
+  ];
 
   useEffect(() => {
     fetchFriends(user?.id);
@@ -109,13 +141,13 @@ function SideBarNavMui({user}) {
   return (
     <Box
       sx={{
-        maxWidth: 'fit-content',
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        maxWidth: "fit-content",
+        marginLeft: "auto",
+        marginRight: "auto",
         margin: 0,
         // display: "flex",
-        alignItems: 'center',
-        height: 400,
+        alignItems: "center",
+        height: 450,
         backgroundColor: "#fff",
         borderRadius: 4,
       }}
@@ -139,21 +171,28 @@ function SideBarNavMui({user}) {
       >
         <Box elevation={0} sx={{ minWidth: 256 }}>
           <Box component="nav" disablePadding>
-            <Box sx={{ backgroundColor: "#eee", m: 2, mb: 0, borderRadius: 4}}>
-              <ListItem component="div" >
+            <Box
+              sx={{
+                backgroundColor: "rgba(145, 158, 171, 0.12)",
+                m: 1,
+                mb: 2,
+                borderRadius: 3,
+              }}
+            >
+              <ListItem component="div">
                 <img
                   className="sidebarImage"
                   src={user?.user_picture}
                   alt="Profile Image"
-                  style={{width: 40, height: 40}}
+                  style={{ width: 40, height: 40 }}
                 />
                 <ListItemButton sx={{ height: 56 }}>
                   <ListItemText
                     primary={user.display_name}
                     primaryTypographyProps={{
                       color: "primary",
-                      fontWeight: "medium",
-                      variant: "body2",
+                      fontWeight: "bold",
+                      variant: "body1",
                     }}
                   />
                 </ListItemButton>
@@ -161,45 +200,54 @@ function SideBarNavMui({user}) {
             </Box>
             <Divider />
             <Box
+              className="sidebar-mui-listitem"
               sx={{
-                bgcolor:"#fff",
+                // bgcolor: "#fff",
                 pb: 2,
               }}
             >
-              <ListItemButton
+              {/* <ListItemButton
                 alignItems="flex-start"
                 sx={{
                   px: 3,
                   pt: 2.5,
                   pb: 0,
-                  "&:hover, &:focus": { "& svg": { backgroundColor: "red" } },
+                  "&:hover, &:focus": { backgroundColor: "red" },
                 }}
-              ></ListItemButton>
+              ></ListItemButton> */}
               {data.map((item) => (
-                <ListItemButton
-                  key={item.label}
-                  sx={{ py: 0, 
-                    minHeight: 50, 
-                    color: "#", 
-                    borderRadius: 2,
-                    // border: '1px red solid', 
-                    mb:.6, 
-                    ml: 1,
-                    mr: 1,
-                    gap: -2,
-                    backgroundColor: '#fff'}}
-                >
-                  <ListItemIcon sx={{ color: "inherit" }}>
-                    {item.icon}
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={item.label}
-                    primaryTypographyProps={{
-                      fontSize: 14,
-                      fontWeight: "medium",
+                <NavLink to={item.route}>
+                  <ListItemButton
+                    className="sidebar-mui-listitem"
+                    key={item.label}
+                    sx={{
+                      py: 0,
+                      minHeight: 50,
+                      color: "#",
+                      borderRadius: 2,
+                      // border: '1px red solid',
+                      mb: 0.6,
+                      ml: 1,
+                      mr: 1,
+                      gap: -2,
+                      backgroundColor: "#fff",
+                      "&:hover, &:active": {
+                        backgroundColor: "rgba(145, 158, 171, 0.12)",
+                      },
                     }}
-                  />
-                </ListItemButton>
+                  >
+                    <ListItemIcon sx={{ color: "inherit" }}>
+                      {item.icon}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={item.label}
+                      primaryTypographyProps={{
+                        fontSize: 14,
+                        fontWeight: "medium",
+                      }}
+                    />
+                  </ListItemButton>
+                </NavLink>
               ))}
             </Box>
           </Box>

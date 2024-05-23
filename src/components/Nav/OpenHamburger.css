@@ -85,9 +85,9 @@
     font-weight: bolder;
   }
   
-  a.active {
+  /* a.active {
     color: rgb(255, 87, 87);
-  }
+  } */
   
   .hamburgerBirthday {
     display: flex;

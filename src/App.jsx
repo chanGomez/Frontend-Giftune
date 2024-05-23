@@ -5,6 +5,7 @@ import Navbar from "./components/NavBarMUI/NavBarMUI";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import "react-toastify/dist/ReactToastify.css";
 // import { ToastContainer } from "react-toastify";
+import SideBarNavMui from "./components/Dashboard/SideBarNavMui/SideBarNavMui";
 import Spinner from "./components/common/spinner/Spinner";
 import { pullUserFromLocal } from "./components/common/FunctionsLibrary";
 import {getUserData} from "./components/API/API"
@@ -128,8 +129,14 @@ function App() {
             setSuccessfullLogin={setSuccessfullLogin}
             setIsLoading={setIsLoading}
           />
-          <main className={pullUserFromLocal() ? "page-content-container" : ""}>
-            <div className={pullUserFromLocal() ? "page-content" : ""}>
+          <main className={user ? "page-content-container" : ""}>
+            <div className={user ? "page-content" : ""}>
+              <NotificationContext.Provider value={NotificationContextValue}>
+                <FriendsContext.Provider value={FriendsContextValue}>
+                  {/* move sidebar into dashboard */}
+                  {user && <SideBarNavMui user={user} />}
+                </FriendsContext.Provider>
+              </NotificationContext.Provider>
               <Routes>
                 <Route
                   path="/search-page"
@@ -187,13 +194,9 @@ function App() {
                 <Route
                   path="/dashboard/:id"
                   element={
-                    <NotificationContext.Provider
-                      value={NotificationContextValue}
-                    >
-                      <FriendsContext.Provider value={FriendsContextValue}>
-                        <Dashboard user={user} />
-                      </FriendsContext.Provider>
-                    </NotificationContext.Provider>
+                    <FriendsContext.Provider value={FriendsContextValue}>
+                      <Dashboard user={user} />
+                    </FriendsContext.Provider>
                   }
                 />
 

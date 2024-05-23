@@ -98,7 +98,7 @@ function Dashboard() {
 
   return (
     <>
-      {user && <SideBarNavMui user={user} />}
+      {/* {user && <SideBarNavMui user={user} />} */}
       <div className="dashboard-container">
         {/* <p className="dashboard-heading">Upcoming Birthdays</p> */}
         {friendsList && <NoFriendsFound />}
