@@ -77,4 +77,5 @@ main {
 
 .sidebar-mui-listitem a.active {
   color: rgb(179, 28, 213);
+  /* background-color: rgb(179, 28, 213); */
 }

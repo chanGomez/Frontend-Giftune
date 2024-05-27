@@ -231,7 +231,7 @@ function SideBarNavMui({user}) {
                       mr: 1,
                       gap: -2,
                       backgroundColor: "#fff",
-                      "&:hover, &:active": {
+                      "&:hover, &:focus": {
                         backgroundColor: "rgba(145, 158, 171, 0.12)",
                       },
                     }}
