@@ -41,11 +41,11 @@ function SideBarNavMui({user}) {
 
 
   const data = [
-    {
-      icon: <HomeIcon />,
-      label: "Home",
-      route: `/dashboard/${user?.id}`,
-    },
+    // {
+    //   icon: <HomeIcon />,
+    //   label: "Home",
+    //   route: `/dashboard/${user?.id}`,
+    // },
     {
       icon: <PersonSearchIcon />,
       label: "Explore",
@@ -215,6 +215,41 @@ function SideBarNavMui({user}) {
                   "&:hover, &:focus": { backgroundColor: "red" },
                 }}
               ></ListItemButton> */}
+              <NavLink end to={`/dashboard/${user?.id}`}>
+                <ListItemButton
+                  className="sidebar-mui-listitem"
+                  sx={{
+                    py: 0,
+                    minHeight: 50,
+                    color: "#",
+                    borderRadius: 2,
+                    // border: '1px red solid',
+                    mb: 0.6,
+                    ml: 1,
+                    mr: 1,
+                    gap: -2,
+                    backgroundColor: "#fff",
+                    ":hover": {
+                      backgroundColor: "rgba(145, 158, 171, 0.08)",
+                    },
+                    " &:focus, &:active": {
+                      color: "rgb(179, 28, 213)",
+                      backgroundColor: "rgba(238, 163, 255, 0.5)",
+                    },
+                  }}
+                >
+                  <ListItemIcon sx={{ color: "inherit" }}>
+                    <HomeIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Home"
+                    primaryTypographyProps={{
+                      fontSize: 14,
+                      fontWeight: "medium",
+                    }}
+                  />
+                </ListItemButton>
+              </NavLink>
               {data.map((item) => (
                 <NavLink to={item.route}>
                   <ListItemButton
@@ -231,8 +266,12 @@ function SideBarNavMui({user}) {
                       mr: 1,
                       gap: -2,
                       backgroundColor: "#fff",
-                      "&:hover, &:focus": {
-                        backgroundColor: "rgba(145, 158, 171, 0.12)",
+                      ":hover": {
+                        backgroundColor: "rgba(145, 158, 171, 0.08)",
+                      },
+                      " &:focus, &:active": {
+                        color: "rgb(179, 28, 213)",
+                        backgroundColor: "rgba(238, 163, 255, 0.5)",
                       },
                     }}
                   >
