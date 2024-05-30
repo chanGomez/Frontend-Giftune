@@ -9,7 +9,13 @@ import { auth, provider } from "../Firebase/Firebase";
 import { pullUserFromLocal } from "../../common/FunctionsLibrary";
 import "./GoogleSignIn.css";
 
-function GoogleSignIn({ user, setUser, setSuccessfullLogin, setIsLoading }) {
+function GoogleSignIn({
+  user,
+  setUser,
+  setSuccessfullLogin,
+  setIsLoading,
+  handleClose,
+}) {
   const navigate = useNavigate();
 
   console.log(setUser);
@@ -18,13 +24,13 @@ function GoogleSignIn({ user, setUser, setSuccessfullLogin, setIsLoading }) {
     signInWithPopup(auth, provider)
       .then((result) => {
         const userData = result.user;
-        
+
         navigateUser({
           user_picture: userData.photoURL,
           display_name: userData.displayName,
           email: userData.email,
         });
-        setIsLoading(true)
+        setIsLoading(true);
         setSuccessfullLogin(true);
       })
       .catch((e) => {
@@ -36,17 +42,21 @@ function GoogleSignIn({ user, setUser, setSuccessfullLogin, setIsLoading }) {
     try {
       let userGotByEmail = await getUserData(user.email);
       console.log("userFetchedFromBackend", userGotByEmail.data);
-      
+
       if (!userGotByEmail.data) {
         let newUser = await createUser(user);
         userGotByEmail = newUser;
         console.log("userFetchedFromBackendCreated", userGotByEmail.data);
       }
       setUser(userGotByEmail.data);
+      handleClose
 
-      {userGotByEmail.data.id && navigate(`/dashboard/${userGotByEmail.data.id}`)};
+      {
+        userGotByEmail.data.id &&
+          navigate(`/dashboard/${userGotByEmail.data.id}`);
+      }
 
-      setIsLoading(false)
+      setIsLoading(false);
       localStorage.setItem("user", JSON.stringify(userGotByEmail.data));
     } catch (error) {
       console.log(error);
@@ -54,7 +64,8 @@ function GoogleSignIn({ user, setUser, setSuccessfullLogin, setIsLoading }) {
   }
 
   return (
-    <div className="google-modal-conatiner"
+    <div
+      className="google-modal-conatiner"
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       <Typography
@@ -81,6 +92,7 @@ function GoogleSignIn({ user, setUser, setSuccessfullLogin, setIsLoading }) {
         type="button"
         class="login-with-google-btn"
         style={{ display: "flex", margin: 10 }}
+        handleClose={false}
       >
         <img
           id="google_icon"

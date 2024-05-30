@@ -200,7 +200,7 @@ function SideBarNavMui({user}) {
             </Box>
             <Divider />
             <Box
-              className="sidebar-mui-listitem"
+              className="sidebar-mui-listitem-list"
               sx={{
                 // bgcolor: "#fff",
                 pb: 2,
@@ -229,13 +229,13 @@ function SideBarNavMui({user}) {
                     mr: 1,
                     gap: -2,
                     backgroundColor: "#fff",
-                    ":hover": {
-                      backgroundColor: "rgba(145, 158, 171, 0.08)",
-                    },
-                    " &:focus, &:active": {
-                      color: "rgb(179, 28, 213)",
-                      backgroundColor: "rgba(238, 163, 255, 0.5)",
-                    },
+                    // ":hover": {
+                    //   backgroundColor: "rgba(145, 158, 171, 0.08)",
+                    // },
+                    // ":focus, :active": {
+                    //   color: "rgb(179, 28, 213)",
+                    //   backgroundColor: "rgba(238, 163, 255, 0.5)",
+                    // },
                   }}
                 >
                   <ListItemIcon sx={{ color: "inherit" }}>
@@ -266,13 +266,13 @@ function SideBarNavMui({user}) {
                       mr: 1,
                       gap: -2,
                       backgroundColor: "#fff",
-                      ":hover": {
-                        backgroundColor: "rgba(145, 158, 171, 0.08)",
-                      },
-                      " &:focus, &:active": {
-                        color: "rgb(179, 28, 213)",
-                        backgroundColor: "rgba(238, 163, 255, 0.5)",
-                      },
+                      // ":hover": {
+                      //   backgroundColor: "rgba(145, 158, 171, 0.08)",
+                      // },
+                      // ":focus, :active": {
+                      //   color: "rgb(179, 28, 213)",
+                      //   backgroundColor: "rgba(238, 163, 255, 0.5)",
+                      // },
                     }}
                   >
                     <ListItemIcon sx={{ color: "inherit" }}>

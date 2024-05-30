@@ -44,9 +44,9 @@
       & :last-child {
         border-radius: 0 10px 10px 0;
       }
-      & .active {
+      /* & .active {
         background-color: var(--mainColor);
-      }
+      } */
     }
 
     & .__search {

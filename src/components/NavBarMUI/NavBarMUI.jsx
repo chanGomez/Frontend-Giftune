@@ -42,7 +42,7 @@ const style = {
   // padding: 5
 };
 
-function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading }) {
+function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading, setUserFromBackend }) {
   const navigate = useNavigate();
 
   function handleLogOut() {
@@ -320,7 +320,7 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading }) 
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
-                sx={{borderRadius: 20}}
+                sx={{ borderRadius: 20 }}
               >
                 <Box sx={style}>
                   {/* if login successfull && and user.firstTimeLogin is false then do questionaire */}
@@ -333,10 +333,12 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading }) 
                     )
                   ) : ( */}
                   <GoogleSignIn
+                    handleClose={handleClose}
                     user={user}
                     setUser={setUser}
                     setSuccessfullLogin={setSuccessfullLogin}
                     setIsLoading={setIsLoading}
+                    setUserFromBackend={setUserFromBackend}
                   />
                   {/* )} */}
                 </Box>

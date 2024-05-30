@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import "./FriendList.css";
 import { getAllFriendsFromUser } from "../API/API";
 import FriendInList from "./FriendInList/FriendInList";
+import SearchIcon from "@mui/icons-material/Search";
 
 function FriendList() {
   const [input, setInput] = useState("");
@@ -59,13 +60,14 @@ function FriendList() {
             />
 
             <button className="friends-list-search-button">
-              <img
+              {/* <img
                 className="search-icon"
                 aria-hidden="true"
                 viewBox="0 0 24 24"
                 src="../../images/search-icon.png"
                 alt="Magnifying glass"
-              />
+              /> */}
+              <SearchIcon className="search-icon" aria-hidden="true" />
             </button>
           </div>
           {input === "" ? (

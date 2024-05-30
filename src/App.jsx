@@ -55,6 +55,15 @@ const EditableUserProfile = React.lazy(() =>
 
 import Questionnaire from "./components/Questionnire/Questionnaire";
 
+      // {
+      //   showPreview && (
+      //     <Suspense fallback={<Loading />}>
+      //       <h2>Preview</h2>
+      //       <MarkdownPreview markdown={markdown} />
+      //     </Suspense>
+      //   );
+      // }
+
 function App() {
   const [user, setUser] = useState(null);
   const [successfullLogin, setSuccessfullLogin] = useState(false)
@@ -64,6 +73,7 @@ function App() {
   const [toggleUpdate, setToggleUpdate] = useState(false);
   const [NotificationsData, setNotificationsData] = useState([]);
   const [SentRequest, setSentRequest] = useState([]);
+  const [userFromBackend, setUserFromBackend] = useState(null);
 
   const FriendsContextValue = {
     setFriendsData,
@@ -123,12 +133,13 @@ function App() {
       <React.Suspense fallback={<Spinner />}>
         <Router>
           {/* remove navbar from router */}
-          <Navbar
-            user={user}
-            setUser={setUser}
-            setSuccessfullLogin={setSuccessfullLogin}
-            setIsLoading={setIsLoading}
-          />
+              <Navbar
+                user={user}
+                setUser={setUser}
+                setSuccessfullLogin={setSuccessfullLogin}
+                setIsLoading={setIsLoading}
+                setUserFromBackend={setUserFromBackend}
+              />
           <main className={user ? "page-content-container" : ""}>
             <div className={user ? "page-content" : ""}>
               <NotificationContext.Provider value={NotificationContextValue}>

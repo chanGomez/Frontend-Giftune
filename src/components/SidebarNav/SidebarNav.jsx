@@ -95,7 +95,7 @@ function SidebarNav({user}) {
         <div className="sidebarListContainer">
           <ul className="sidebarList">
             <li key="dashboard" className="sidebarItem">
-              <NavLink end to={`/dashboard/${user?.id}`}>
+              <NavLink end >
                 Dashboard
               </NavLink>
             </li>

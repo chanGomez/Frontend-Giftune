@@ -18,9 +18,9 @@
   border-radius: 10px;
 }
 
-.wish-list-form-container button:active {
+/* .wish-list-form-container button:active {
   scale: 0.95;
-}
+} */
 
 .wish-list-form-container .wish-list-form {
   display: flex;
