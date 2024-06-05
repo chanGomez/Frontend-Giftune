@@ -29,19 +29,20 @@ function Search() {
 
   const handleChange = (value) => {
     setInput(value);
-    fetchUsers(value);
     handleFilter(value);
   };
 
   function handleFilter(input) {
     let filtered = usersData.filter((user) => {
-      return user?.user_name.toLowerCase().includes(input);
+      return user?.display_name.toLowerCase().includes(input.trim());
     });
+
     if (mainUser) {
       filtered = filtered.filter((element) => {
-        return element?.user_name !== mainUser?.user_name;
+        return element?.display_name !== mainUser?.display_name;
       });
     }
+
     setFilteredUsers(filtered.sort());
   }
 
