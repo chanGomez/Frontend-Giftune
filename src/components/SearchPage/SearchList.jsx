@@ -23,6 +23,7 @@ function SearchList({ filteredUsers }) {
 
     // eslint-disable-next-line
   }, [filteredUsers]);
+  
   function applyFriendStatus(friendsArr) {
     const friendsSet = new Set(friendsArr.map((element) => element.user_id));
     let newArr = filteredUsers.map((item) => {
