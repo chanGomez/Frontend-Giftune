@@ -9,6 +9,7 @@ import { pullUserFromLocal } from "../common/FunctionsLibrary";
 import NoFriendsFound from "../common/NoResults/NoFriendsFound";
 import SidebarNav from "../SidebarNav/SidebarNav";
 import SideBarNavMui from "./SideBarNavMui/SideBarNavMui";
+import Spinner from "../common/spinner/Spinner";
 // import Events from "../common/Events/Events";
 import "./Dashboard.css";
 
@@ -17,11 +18,27 @@ function Dashboard() {
   const [user, setUser] = useState(pullUserFromLocal());
   const [dashboardId, setDashboardId] = useState(user.id);
   const [dashboardUser, setDashboardUser] = useState({});
+  const [ isloading, setIsLoading]= useState(false)
   let currentDate = new Date(Date.now()); // Time from system
   currentDate.setTime(currentDate.getTime() + currentDate.getTimezoneOffset() * 60 * 1000);
   const { setFriendsData } = useContext(FriendsContext);
+
+    async function fetchData() {
+      try {
+        setIsLoading(true);
+        console.log("loading!!!");
+        setDashboardId(user?.id);
+        let response = await getUserProfile(dashboardId);
+        setDashboardUser(response.data);
+        console.log("DONEEE loading!!!");
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   
   useEffect(() => {
+
     if (user === null) {
       navigate("/login");
     }
@@ -29,16 +46,6 @@ function Dashboard() {
     setFriendsData(dashboardUser.friends);
     // eslint-disable-next-line
   }, [dashboardId]);
-
-  async function fetchData() {
-    try {
-      setDashboardId(user?.id);
-      let response = await getUserProfile(dashboardId);
-      setDashboardUser(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
   const upcomingDateCalc = (dob) => {
@@ -100,8 +107,15 @@ function Dashboard() {
     <>
       {/* {user && <SideBarNavMui user={user} />} */}
       <div className="dashboard-container">
+        {isloading ? (
+          <div>
+            <Spinner />
+          </div>
+        ) : (
+          friendsList && <NoFriendsFound />
+        )}
+
         {/* <p className="dashboard-heading">Upcoming Birthdays</p> */}
-        {friendsList && <NoFriendsFound />}
       </div>
     </>
   );

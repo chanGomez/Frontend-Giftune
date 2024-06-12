@@ -55,15 +55,6 @@ const EditableUserProfile = React.lazy(() =>
 
 import Questionnaire from "./components/Questionnire/Questionnaire";
 
-      // {
-      //   showPreview && (
-      //     <Suspense fallback={<Loading />}>
-      //       <h2>Preview</h2>
-      //       <MarkdownPreview markdown={markdown} />
-      //     </Suspense>
-      //   );
-      // }
-
 function App() {
   const [user, setUser] = useState(null);
   const [successfullLogin, setSuccessfullLogin] = useState(false)
@@ -96,11 +87,11 @@ function App() {
     setSentRequest,
   };
 
-  useEffect(() => {
-   
-    let storedUser = pullUserFromLocal();
-    {storedUser && setUser(storedUser.data)}
 
+  useEffect(() => {
+    let storedUser = pullUserFromLocal();
+    {storedUser && setUser(storedUser)}
+    console.log(storedUser);
   }, [successfullLogin]);
 
 
@@ -131,8 +122,11 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <React.Suspense fallback={<Spinner />}>
-        <Router>
-          {/* remove navbar from router */}
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <Router>
               <Navbar
                 user={user}
                 setUser={setUser}
@@ -140,108 +134,112 @@ function App() {
                 setIsLoading={setIsLoading}
                 setUserFromBackend={setUserFromBackend}
               />
-          <main className={user ? "page-content-container" : ""}>
-            <div className={user ? "page-content" : ""}>
-              <NotificationContext.Provider value={NotificationContextValue}>
-                <FriendsContext.Provider value={FriendsContextValue}>
-                  {/* move sidebar into dashboard */}
-                  {user && <SideBarNavMui user={user} />}
-                </FriendsContext.Provider>
-              </NotificationContext.Provider>
-              <Routes>
-                <Route
-                  path="/search-page"
-                  element={
-                    <NotificationContext.Provider
-                      value={NotificationContextValue}
-                    >
-                      <FriendsContext.Provider value={FriendsContextValue}>
-                        <SearchPage />
-                      </FriendsContext.Provider>
-                    </NotificationContext.Provider>
-                  }
-                />
-                {/* <Route path="/sign-up" element={<SignUpPage />} /> */}
-                <Route path="/" element={<Home />} />
-                {/* <Route path="/login" element={<Login setUser={setUser} />} /> */}
-                <Route path="/users/:id" element={<FoundUser />} />
-                <Route path="/questionnaire" element={<Questionnaire />} />
-                <Route
-                  path="/dashboard/:id/new"
-                  element={
-                    <WishlistContext.Provider value={WishlistContextValue}>
-                      <AddWishlist user={user} />
-                    </WishlistContext.Provider>
-                  }
-                />
-                <Route
-                  path="/dashboard/notification"
-                  element={
-                    <NotificationContext.Provider
-                      value={NotificationContextValue}
-                    >
-                      <FriendsContext.Provider value={FriendsContextValue}>
-                        <NotificationPage />
-                      </FriendsContext.Provider>
-                    </NotificationContext.Provider>
-                  }
-                />
-                <Route
-                  path="/dashboard/:id/userwishlist"
-                  element={
-                    <WishlistContext.Provider value={WishlistContextValue}>
-                      <UserWishlist user={user} />
-                    </WishlistContext.Provider>
-                  }
-                />
-                <Route
-                  path="/dashboard/:id/edit"
-                  element={
-                    <WishlistContext.Provider value={WishlistContextValue}>
-                      <EditWishlist />
-                    </WishlistContext.Provider>
-                  }
-                />
-                <Route
-                  path="/dashboard/:id"
-                  element={
+              <main className={user ? "page-content-container" : ""}>
+                <div className={user ? "page-content" : ""}>
+                  <NotificationContext.Provider
+                    value={NotificationContextValue}
+                  >
                     <FriendsContext.Provider value={FriendsContextValue}>
-                      <Dashboard user={user} />
+                      {/* move sidebar into dashboard */}
+                      {user && <SideBarNavMui user={user} />}
                     </FriendsContext.Provider>
-                  }
-                />
+                  </NotificationContext.Provider>
+                  <Routes>
+                    <Route
+                      path="/search-page"
+                      element={
+                        <NotificationContext.Provider
+                          value={NotificationContextValue}
+                        >
+                          <FriendsContext.Provider value={FriendsContextValue}>
+                            <SearchPage />
+                          </FriendsContext.Provider>
+                        </NotificationContext.Provider>
+                      }
+                    />
+                    {/* <Route path="/sign-up" element={<SignUpPage />} /> */}
+                    <Route path="/" element={<Home />} />
+                    {/* <Route path="/login" element={<Login setUser={setUser} />} /> */}
+                    <Route path="/users/:id" element={<FoundUser />} />
+                    <Route path="/questionnaire" element={<Questionnaire />} />
+                    <Route
+                      path="/dashboard/:id/new"
+                      element={
+                        <WishlistContext.Provider value={WishlistContextValue}>
+                          <AddWishlist user={user} />
+                        </WishlistContext.Provider>
+                      }
+                    />
+                    <Route
+                      path="/dashboard/notification"
+                      element={
+                        <NotificationContext.Provider
+                          value={NotificationContextValue}
+                        >
+                          <FriendsContext.Provider value={FriendsContextValue}>
+                            <NotificationPage />
+                          </FriendsContext.Provider>
+                        </NotificationContext.Provider>
+                      }
+                    />
+                    <Route
+                      path="/dashboard/:id/userwishlist"
+                      element={
+                        <WishlistContext.Provider value={WishlistContextValue}>
+                          <UserWishlist user={user} />
+                        </WishlistContext.Provider>
+                      }
+                    />
+                    <Route
+                      path="/dashboard/:id/edit"
+                      element={
+                        <WishlistContext.Provider value={WishlistContextValue}>
+                          <EditWishlist />
+                        </WishlistContext.Provider>
+                      }
+                    />
+                    <Route
+                      path="/dashboard/:id"
+                      element={
+                        <FriendsContext.Provider value={FriendsContextValue}>
+                          <Dashboard user={user} />
+                        </FriendsContext.Provider>
+                      }
+                    />
 
-                <Route
-                  path="/dashboard/:id/friends"
-                  element={
-                    <FriendsContext.Provider value={FriendsContextValue}>
-                      <FriendList />
-                    </FriendsContext.Provider>
-                  }
-                />
-                <Route
-                  path="/dashboard/:id/friends/:friendId"
-                  element={
-                    <FriendsContext.Provider value={FriendsContextValue}>
-                      <FriendsProfile />
-                    </FriendsContext.Provider>
-                  }
-                />
+                    <Route
+                      path="/dashboard/:id/friends"
+                      element={
+                        <FriendsContext.Provider value={FriendsContextValue}>
+                          <FriendList />
+                        </FriendsContext.Provider>
+                      }
+                    />
+                    <Route
+                      path="/dashboard/:id/friends/:friendId"
+                      element={
+                        <FriendsContext.Provider value={FriendsContextValue}>
+                          <FriendsProfile />
+                        </FriendsContext.Provider>
+                      }
+                    />
 
-                <Route
-                  path="/dashboard/:id/editProfile"
-                  element={
-                    <WishlistContext.Provider value={WishlistContextValue}>
-                      <EditableUserProfile user={user} />
-                    </WishlistContext.Provider>
-                  }
-                />
-                {/* <Route path="/dashboard/events" element={<Map />} /> */}
-              </Routes>
-            </div>
-          </main>
-          <Footer user={user} setUser={setUser} />
-        </Router>
+                    <Route
+                      path="/dashboard/:id/editProfile"
+                      element={
+                        <WishlistContext.Provider value={WishlistContextValue}>
+                          <EditableUserProfile user={user} />
+                        </WishlistContext.Provider>
+                      }
+                    />
+                    {/* <Route path="/dashboard/events" element={<Map />} /> */}
+                  </Routes>
+                </div>
+              </main>
+              <Footer user={user} setUser={setUser} />
+            </Router>
+          </>
+        )}
       </React.Suspense>
     </ThemeProvider>
   );

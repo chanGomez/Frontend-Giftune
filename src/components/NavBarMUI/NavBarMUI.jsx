@@ -333,6 +333,7 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading, se
                     )
                   ) : ( */}
                   <GoogleSignIn
+                  setOpen={setOpen}
                     handleClose={handleClose}
                     user={user}
                     setUser={setUser}

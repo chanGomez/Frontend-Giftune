@@ -15,6 +15,7 @@ function GoogleSignIn({
   setSuccessfullLogin,
   setIsLoading,
   handleClose,
+  setOpen
 }) {
   const navigate = useNavigate();
 
@@ -23,15 +24,16 @@ function GoogleSignIn({
   const onGoogleSignIn = (e) => {
     signInWithPopup(auth, provider)
       .then((result) => {
+        setIsLoading(true);
+        setOpen(false);
         const userData = result.user;
-
         navigateUser({
           user_picture: userData.photoURL,
           display_name: userData.displayName,
           email: userData.email,
         });
-        setIsLoading(true);
-        setSuccessfullLogin(true);
+        
+
       })
       .catch((e) => {
         console.log(e);
@@ -49,15 +51,15 @@ function GoogleSignIn({
         console.log("userFetchedFromBackendCreated", userGotByEmail.data);
       }
       setUser(userGotByEmail.data);
-      handleClose
-
+      setIsLoading(false);
+      setSuccessfullLogin(true);
       {
         userGotByEmail.data.id &&
           navigate(`/dashboard/${userGotByEmail.data.id}`);
       }
 
-      setIsLoading(false);
       localStorage.setItem("user", JSON.stringify(userGotByEmail.data));
+
     } catch (error) {
       console.log(error);
     }
@@ -92,7 +94,6 @@ function GoogleSignIn({
         type="button"
         class="login-with-google-btn"
         style={{ display: "flex", margin: 10 }}
-        handleClose={false}
       >
         <img
           id="google_icon"
