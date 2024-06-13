@@ -149,6 +149,7 @@ function SideBarNavMui({user}) {
         height: 450,
         backgroundColor: "#fff",
         borderRadius: 4,
+        border: "1px #282828 solid",
       }}
     >
       <ThemeProvider
@@ -172,10 +173,11 @@ function SideBarNavMui({user}) {
           <Box component="nav" disablepadding="true">
             <Box
               sx={{
-                backgroundColor: "rgba(145, 158, 171, 0.12)",
+                // backgroundColor: "rgba(145, 158, 171, 0.12)",
                 m: 1,
                 mb: 2,
                 borderRadius: 3,
+                border: "1px #282828 solid",
               }}
             >
               <ListItem component="div">
@@ -264,6 +266,7 @@ function SideBarNavMui({user}) {
                       mr: 1,
                       gap: -2,
                       backgroundColor: "#fff",
+                      
                       // ":hover": {
                       //   backgroundColor: "rgba(145, 158, 171, 0.08)",
                       // },

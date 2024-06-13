@@ -76,18 +76,25 @@ main {
 }
 
 .sidebar-mui-listitem-list a.active {
-    background-color: rgba(238, 163, 255, 0.5);
+    /* background-color: rgba(238, 163, 255, 0.5); */
+    /* border: "1px #282828 solid"; */
   color: rgb(179, 28, 213);
+  text-decoration: underline;
+  text-underline-offset: 8px;
 
 }
 .sidebar-mui-listitem-list a:hover {
-    background-color: rgba(238, 163, 255, 0.5);
-  color: rgba(238, 163, 255, 0.5);
+    /* background-color: rgba(238, 163, 255, 0.5); */
+  /* color: rgba(15, 0, 19, 0.5);
+  border: "1px #282828 solid"; */
+    text-decoration: underline;
+  text-underline-offset: 8px;
+  
 
 }
 
-.sidebar-mui-listitem{
+/* .sidebar-mui-listitem{
       background-color: rgba(0, 0, 0, 0.5);
   color: rgba(238, 163, 255, 0.5);
-}
+} */
 /*     background-color: rgba(24, 119, 242, 0.16) */
