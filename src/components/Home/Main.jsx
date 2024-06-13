@@ -13,6 +13,7 @@ import GoogleSignIn from "../Auth/LogIn/GoogleSignIn";
 import { Modal } from "@mui/material";
 
 
+
 const style = {
   backgroundImage: "linear-gradient(120deg, #fdfbfb 0%, #e5dcea 100%)",
   position: "absolute",
@@ -37,6 +38,22 @@ function Main() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  //modal styles
+  const style = {
+    backgroundImage: "linear-gradient(120deg, #fdfbfb 0%, #e5dcea 100%)",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 420,
+    bgcolor: "background.paper",
+    // border: "2px solid #000",
+    boxShadow: 14,
+    p: 4,
+    borderRadius: 3,
+    // padding: 5
+  };
+
   return (
     <Container sx={{ py: 11 }}>
       <Grid container>
@@ -52,7 +69,13 @@ function Main() {
             <Button
               variant="contained"
               color="primary"
-              sx={{ flexShrink: 0, width: 120, height: 50, mt: 2 }}
+              sx={{
+                flexShrink: 0,
+                width: 120,
+                height: 50,
+                mt: 2,
+                boxShadow: "none",
+              }}
               onClick={handleOpen}
             >
               SIGN UP
@@ -76,12 +99,8 @@ function Main() {
                     )
                   ) : ( */}
                   <GoogleSignIn
+                    setOpen={setOpen}
                     handleClose={handleClose}
-                    user={user}
-                    setUser={setUser}
-                    setSuccessfullLogin={setSuccessfullLogin}
-                    setIsLoading={setIsLoading}
-                    setUserFromBackend={setUserFromBackend}
                   />
                   {/* )} */}
                 </Box>

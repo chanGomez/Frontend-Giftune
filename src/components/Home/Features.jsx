@@ -274,7 +274,7 @@ export default function Features() {
               width: "100%",
               display: { xs: "none", sm: "flex" },
               pointerEvents: "none",
-              backgroundColor: "#f3f0ff",
+              backgroundColor: "#f8f1fa",
             }}
           >
             <Box
@@ -284,7 +284,6 @@ export default function Features() {
                 height: 500,
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
-                backgroundColor: "#f3f0ff",
                 backgroundPosition: "center",
                 backgroundImage: (theme) =>
                   theme.palette.mode === "light"

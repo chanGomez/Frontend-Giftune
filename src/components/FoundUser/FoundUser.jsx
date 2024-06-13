@@ -139,9 +139,9 @@ function FoundUser() {
           )}
         </ul>
       </div>
-      <div className="back-left-arrow-container" onClick={() => navigate(-1)}>
+      {/* <div className="back-left-arrow-container" onClick={() => navigate(-1)}>
         <TbArrowLeft size={65} />
-      </div>
+      </div> */}
     </div>
   );
 }

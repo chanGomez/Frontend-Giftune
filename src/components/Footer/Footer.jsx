@@ -31,32 +31,32 @@ export default function Footer() {
   return (
     <Container
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         gap: { xs: 4, sm: 8 },
         py: { xs: 8, sm: 10 },
-        textAlign: { sm: 'center', md: 'left' },
+        textAlign: { sm: "center", md: "left" },
       }}
     >
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
-          width: '100%',
-          justifyContent: 'space-between',
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          width: "100%",
+          justifyContent: "space-between",
         }}
       >
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
+            display: "flex",
+            flexDirection: "column",
             gap: 4,
-            minWidth: { xs: '100%', sm: '60%' },
+            minWidth: { xs: "100%", sm: "60%" },
           }}
         >
-          <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
-            <Box sx={{ ml: '0' }}>
+          <Box sx={{ width: { xs: "100%", sm: "60%" } }}>
+            <Box sx={{ ml: "0" }}>
               {/* <img
                 src={
                   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
@@ -64,9 +64,14 @@ export default function Footer() {
                 style={logoStyle}
                 alt="logo of sitemark"
               /> */}
-               <Typography variant="h3" fontWeight={600} fontFamily={'monospace'} gutterBottom>
-              Giftune
-            </Typography>
+              <Typography
+                variant="h3"
+                fontWeight={600}
+                fontFamily={"monospace"}
+                gutterBottom
+              >
+                Giftune
+              </Typography>
             </Box>
             <Typography variant="body2" fontWeight={600} gutterBottom>
               Newsletter
@@ -84,11 +89,15 @@ export default function Footer() {
                 aria-label="Enter your email address"
                 placeholder="Your email address"
                 inputProps={{
-                  autoComplete: 'off',
+                  autoComplete: "off",
                   // ariaLabel: 'Enter your email address',
                 }}
               />
-              <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}>
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{ flexShrink: 0, boxShadow: "none"}}
+              >
                 Subscribe
               </Button>
             </Stack>
@@ -96,8 +105,8 @@ export default function Footer() {
         </Box>
         <Box
           sx={{
-            display: { xs: 'none', sm: 'flex' },
-            flexDirection: 'column',
+            display: { xs: "none", sm: "flex" },
+            flexDirection: "column",
             gap: 1,
           }}
         >
@@ -122,8 +131,8 @@ export default function Footer() {
         </Box>
         <Box
           sx={{
-            display: { xs: 'none', sm: 'flex' },
-            flexDirection: 'column',
+            display: { xs: "none", sm: "flex" },
+            flexDirection: "column",
             gap: 1,
           }}
         >
@@ -142,8 +151,8 @@ export default function Footer() {
         </Box>
         <Box
           sx={{
-            display: { xs: 'none', sm: 'flex' },
-            flexDirection: 'column',
+            display: { xs: "none", sm: "flex" },
+            flexDirection: "column",
             gap: 1,
           }}
         >
@@ -163,12 +172,12 @@ export default function Footer() {
       </Box>
       <Box
         sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
+          display: "flex",
+          justifyContent: "space-between",
           pt: { xs: 4, sm: 8 },
-          width: '100%',
-          borderTop: '1px solid',
-          borderColor: 'divider',
+          width: "100%",
+          borderTop: "1px solid",
+          borderColor: "#333133",
         }}
       >
         <div>
@@ -189,14 +198,14 @@ export default function Footer() {
           spacing={1}
           useFlexGap
           sx={{
-            color: 'text.secondary',
+            color: "text.secondary",
           }}
         >
           <IconButton
             color="inherit"
             href="https://github.com/chanGomez"
             aria-label="GitHub"
-            sx={{ alignSelf: 'center' }}
+            sx={{ alignSelf: "center" }}
           >
             <FacebookIcon />
           </IconButton>
@@ -204,7 +213,7 @@ export default function Footer() {
             color="inherit"
             href="https://www.linkedin.com/in/chantal-gomez-marte/"
             aria-label="LinkedIn"
-            sx={{ alignSelf: 'center' }}
+            sx={{ alignSelf: "center" }}
           >
             <LinkedInIcon />
           </IconButton>

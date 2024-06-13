@@ -73,7 +73,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0px;
-  background-color: #f3f0ff;
+  /* background-color: #f3f0ff; */
+  background-color: #f8f1fa;
 }
 
 code {

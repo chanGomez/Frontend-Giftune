@@ -27,6 +27,7 @@ const pages = ["Log Out"];
 const pagesNotLoggedIn = ["Find Wishlist", "Login"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
+//modal styles
 const style = {
   backgroundImage: "linear-gradient(120deg, #fdfbfb 0%, #e5dcea 100%)",
   position: "absolute",
@@ -78,11 +79,18 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading, se
 
   return user ? (
     //LOGGED IN
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      style={{
+        background: "none",
+        boxShadow: "none",
+        borderBottom: "1px solid #333133",
+      }}
+    >
       <Container maxWidth="xl" sx={{ maxWidth: 1200 }}>
         <Toolbar disableGutters>
           <Typography
-            variant="h3"
+            variant="h4"
             noWrap
             href="#app-bar-with-responsive-menu"
             sx={{
@@ -92,6 +100,7 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading, se
               fontFamily: "monospace",
               fontWeight: 700,
               // letterSpacing: '.3rem',
+              color: "#282828",
               textDecoration: "none",
             }}
           >
@@ -146,7 +155,7 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading, se
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "#282828",
               textDecoration: "none",
             }}
           >
@@ -161,7 +170,7 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading, se
           >
             <Button
               onClick={handleLogOut}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{ my: 2, color: "#282828", display: "block" }}
             >
               {pages}
             </Button>
@@ -201,7 +210,14 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading, se
     </AppBar>
   ) : (
     //NOT LOGGED IN
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      style={{
+        background: "none",
+        boxShadow: "none",
+        borderBottom: "1px solid #333133",
+      }}
+    >
       <Container maxWidth="l" sx={{ maxWidth: 1200 }}>
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
@@ -209,7 +225,7 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading, se
 
           <NavLink to={"/"}>
             <Typography
-              variant="h3"
+              variant="h4"
               noWrap
               href="#app-bar-with-responsive-menu"
               sx={{
@@ -219,7 +235,7 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading, se
                 fontFamily: "monospace",
                 fontWeight: 700,
                 // letterSpacing: '.3rem',
-                color: "inherit",
+                color: "#282828",
                 textDecoration: "none",
               }}
             >
@@ -278,6 +294,7 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading, se
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              color: "#282828",
             }}
           >
             Giftune
@@ -303,14 +320,14 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading, se
               onClick={() => {
                 navigate("/search-page");
               }}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{ my: 2, color: "#282828", display: "block" }}
             >
               Find Wishlist
             </Button>
             {/* </NavLink> */}
             <Button
               onClick={handleOpen}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{ my: 2, color: "#282828", display: "block" }}
             >
               Sign In
             </Button>
@@ -333,7 +350,7 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading, se
                     )
                   ) : ( */}
                   <GoogleSignIn
-                  setOpen={setOpen}
+                    setOpen={setOpen}
                     handleClose={handleClose}
                     user={user}
                     setUser={setUser}
