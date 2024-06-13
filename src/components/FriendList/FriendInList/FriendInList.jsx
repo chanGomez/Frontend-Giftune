@@ -18,13 +18,13 @@ function FriendInList({ id, friendsList }) {
                     <img
                       className="friend-list-profile-img-placeholder"
                       src={`${
-                        user.user_picture ? user.user_picture : user_picture
+                        user.user_picture
                       }`}
                       alt=""
                     />
                     <div className="friend-list-all-names">
                       <span className="friend-list-user-name">
-                        {user.user_name}
+                        {user.display_name}
                       </span>
                       <div className="friend-list-firstname-lastname">
                         {user.first_name} {user.last_name}

@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 
 function FriendsProfileWishlist({ item, isMuted }) {
   const [is_bought, setis_bought] = useState(item.is_bought);
-  const [assigned_user, setAssigned_user] = useState(item.assigned_user);
+  const [assigned_user, setAssigned_user] = useState(item.assigned_user_id);
   const [BoughtNotification, setBoughtNotification] = useState({
     id: 0,
     message: `An Item has been bought`,
@@ -21,16 +21,19 @@ function FriendsProfileWishlist({ item, isMuted }) {
     date_stamp: "",
     time_stamp: "",
   });
+  console.log(item);
 
   const { id } = useParams();
   let userId = parseInt(id);
+  console.log(assigned_user, userId);
+
   useEffect(() => {
     let storedUser = pullUserFromLocal();
     setBoughtNotification({
       ...BoughtNotification,
       id: item.user_id,
       sender_id: userId,
-      sender_name: storedUser.user_name,
+      sender_name: storedUser.display_name,
     });
     // eslint-disable-next-line
   }, []);
@@ -73,7 +76,8 @@ function FriendsProfileWishlist({ item, isMuted }) {
     };
     console.log(localData);
     try {
-      await updateItemBoughtByItemId(item.id, !is_bought, userId);
+      let result = await updateItemBoughtByItemId(item.id, !is_bought, userId);
+      console.log(result);
       await newNotification(localData);
       setis_bought(!is_bought);
       confettiTrue();

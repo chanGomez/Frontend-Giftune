@@ -96,12 +96,12 @@ async function deleteFriend(id, friendId) {
   }
 }
 
-async function updateItemBoughtByItemId(itemId, is_bought, assigned_user) {
+async function updateItemBoughtByItemId(itemId, is_bought, assigned_user_id) {
   try {
     let result = await Axios.put(`/dashboard/item-details`, {
       id: itemId,
       is_bought: is_bought,
-      assigned_user: assigned_user,
+      assigned_user_id: assigned_user_id,
     });
     console.log(result.data);
     return result.data;

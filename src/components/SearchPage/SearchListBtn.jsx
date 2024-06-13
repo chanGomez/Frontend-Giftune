@@ -91,7 +91,7 @@ function SearchListBtn({ targetUser }) {
       disabled={toggleBtn}
     >
       {alreadySentRequest && !hasRequest
-        ? "Already Sent ✓"
+        ? "Pending..."
         : !alreadySentRequest && hasRequest
         ? "Friend Request in Notifications"
         : "Send Friend Request"}

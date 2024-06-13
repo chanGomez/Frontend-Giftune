@@ -87,7 +87,7 @@ function ResponsiveAppBar({ user, setUser, setSuccessfullLogin, setIsLoading, se
         borderBottom: "1px solid #333133",
       }}
     >
-      <Container maxWidth="xl" sx={{ maxWidth: 1200 }}>
+      <Container maxWidth="l" sx={{ maxWidth: 1200 }}>
         <Toolbar disableGutters>
           <Typography
             variant="h4"
