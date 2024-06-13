@@ -100,7 +100,6 @@ function Spinner() {
           </g>
         </g>
       </svg>
-      <p> Loading... </p>
     </div>
   );
 }
