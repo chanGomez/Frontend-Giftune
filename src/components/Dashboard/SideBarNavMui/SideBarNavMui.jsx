@@ -120,7 +120,6 @@ function SideBarNavMui({user}) {
     }
   }
 
-  console.log(user.user_picture)
 
   // const FireNav = styled(List)({
   //   "& .MuiListItemButton-root": {

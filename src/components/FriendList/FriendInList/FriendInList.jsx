@@ -18,7 +18,7 @@ function FriendInList({ id, friendsList }) {
                     <img
                       className="friend-list-profile-img-placeholder"
                       src={`${
-                        user.user_picture ? user.user_picture : profileImg
+                        user.user_picture ? user.user_picture : user_picture
                       }`}
                       alt=""
                     />

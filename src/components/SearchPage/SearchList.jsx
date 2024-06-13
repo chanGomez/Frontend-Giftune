@@ -48,7 +48,7 @@ function SearchList({ filteredUsers }) {
         return (
           <div key={index} className="search-list-result">
             <img
-              src={`${user.user_picture ? user.user_picture : profileImg}`}
+              src={`${user.user_picture ? user.user_picture : user_picture}`}
               className="search-list-profile-img"
               alt="..."
               style={{ maxHeight: "40px" }}

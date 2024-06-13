@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./FoundUser.css";
-// import profileImg from "../../Assets/profile-img-red.png";
-
 import {
   getSpecificUser,
   getSpecificUserWishlist,
   getAllFriendsFromUser,
 } from "../API/API";
 import { TbArrowLeft } from "react-icons/tb";
-// import { toast } from "react-toastify";
 
 import SearchListBtn from "../SearchPage/SearchListBtn";
 
@@ -21,6 +18,7 @@ function FoundUser() {
   const [userwishlist, setUserwishlist] = useState([]);
   const [areFriends, setAreFriends] = useState(false);
   const [loggedInID, setLoggedInID] = useState(0);
+
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
     let storedUser = JSON.parse(userFromStorage);
@@ -33,17 +31,21 @@ function FoundUser() {
     // eslint-disable-next-line
   }, []);
 
+  console.log(JSON.parse(localStorage.getItem("user")));
+
   async function fetchData() {
     try {
       let result = await getSpecificUser(id);
+      console.log(result);
       let wishlistData = await getSpecificUserWishlist(id);
       setUserwishlist(wishlistData);
       setUserInfo(result);
     } catch (error) {
-      // toast.error("There was a server error", toast.POSITION.TOP_CENTER);
       console.log(error);
     }
   }
+  console.log(userInfo, id, userwishlist);
+
   async function checkIfFriends(localId) {
     try {
       let { data } = await getAllFriendsFromUser(localId);
@@ -74,17 +76,16 @@ function FoundUser() {
           <img
             alt="friend-user-profile"
             className="friend-user-profile"
-            src={`${
-              userInfo.user_picture ? userInfo.user_picture : profileImg
-            }`}
+            src={`${userInfo.user_picture ? userInfo.user_picture : ""}`}
           />
           <div className="friend-user-names">
             <h2>
-              {toggleFullView
-                ? `${userInfo?.first_name} ${userInfo?.last_name}`
-                : `${userInfo?.user_name}`}
+              {/* {toggleFullView
+                ? `${userInfo?.display_name}`
+                : `${userInfo?.user_name}`} */}
+             { userInfo?.display_name}
             </h2>
-            <p>{userInfo.user_name}</p>
+            <p>{userInfo.display_name}</p>
             <p className="friend-user-dob">
               {toggleFullView
                 ? `${fullMonthOfUpcomingBirthday} ${dayNumOfUpcomingBirthDay}`

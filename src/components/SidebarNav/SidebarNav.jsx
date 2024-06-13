@@ -71,7 +71,6 @@ function SidebarNav({user}) {
   
   // let userPic = user?.user_picture.includes("http")? user?.user_picture : userProfileImg;
 
-  console.log(user.user_picture)
   
   return (
     <div className="sidebar-nav-container">

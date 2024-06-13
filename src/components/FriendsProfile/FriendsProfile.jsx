@@ -128,9 +128,9 @@ function FriendsProfile() {
               }
             />
             <div className="friend-profile-user-names">
-              <h2>{friendInfoProfile.user_name}</h2>
+              <h2>{friendInfoProfile.display_name}</h2>
               <p>
-                {friendInfoProfile.first_name} {friendInfoProfile.last_name}
+                {/* {friendInfoProfile.first_name} {friendInfoProfile.last_name} */}
               </p>
               <div className="friend-profile-dob-container">
                 <p className="friend-user-dob">
