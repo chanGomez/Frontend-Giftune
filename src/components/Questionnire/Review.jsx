@@ -19,7 +19,7 @@ const payments = [
 export default function Review() {
   return (
     <Stack spacing={2}>
-      <List disablePadding>
+      <List disablepadding="true">
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Products" secondary="4 selected" />
           <Typography variant="body2">$134.98</Typography>
@@ -48,7 +48,7 @@ export default function Review() {
           </Typography>
           <Typography gutterBottom>John Smith</Typography>
           <Typography color="text.secondary" gutterBottom>
-            {addresses.join(', ')}
+            {addresses.join(", ")}
           </Typography>
         </div>
         <div>
@@ -62,7 +62,7 @@ export default function Review() {
                   direction="row"
                   spacing={1}
                   useFlexGap
-                  sx={{ width: '100%', mb: 1 }}
+                  sx={{ width: "100%", mb: 1 }}
                 >
                   <Typography variant="body1" color="text.secondary">
                     {payment.name}

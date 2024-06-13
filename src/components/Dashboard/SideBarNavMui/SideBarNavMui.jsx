@@ -170,7 +170,7 @@ function SideBarNavMui({user}) {
         // theme={LPtheme}
       >
         <Box elevation={0} sx={{ minWidth: 256 }}>
-          <Box component="nav" disablePadding>
+          <Box component="nav" disablepadding="true">
             <Box
               sx={{
                 backgroundColor: "rgba(145, 158, 171, 0.12)",
@@ -251,10 +251,9 @@ function SideBarNavMui({user}) {
                 </ListItemButton>
               </NavLink>
               {data.map((item) => (
-                <NavLink to={item.route}>
+                <NavLink to={item.route} key={item.label}>
                   <ListItemButton
                     className="sidebar-mui-listitem"
-                    key={item.label}
                     sx={{
                       py: 0,
                       minHeight: 50,

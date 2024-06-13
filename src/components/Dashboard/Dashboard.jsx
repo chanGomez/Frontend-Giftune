@@ -26,11 +26,9 @@ function Dashboard() {
     async function fetchData() {
       try {
         setIsLoading(true);
-        console.log("loading!!!");
         setDashboardId(user?.id);
         let response = await getUserProfile(dashboardId);
         setDashboardUser(response.data);
-        console.log("DONEEE loading!!!");
         setIsLoading(false);
       } catch (error) {
         console.log(error);

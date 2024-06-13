@@ -38,7 +38,7 @@ function Info({ totalPrice }) {
       <Typography variant="h4" gutterBottom>
         {totalPrice}
       </Typography>
-      <List disablePadding>
+      <List disablepadding="true">
         {products.map((product) => (
           <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
             <ListItemText

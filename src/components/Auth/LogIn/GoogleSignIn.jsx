@@ -92,7 +92,7 @@ function GoogleSignIn({
       <button
         onClick={onGoogleSignIn}
         type="button"
-        class="login-with-google-btn"
+        className="login-with-google-btn"
         style={{ display: "flex", margin: 10 }}
       >
         <img
