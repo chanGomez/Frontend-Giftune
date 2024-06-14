@@ -15,6 +15,7 @@ import {
   NotificationContext,
 } from "./components/common/context/context";
 import { createTheme, ThemeProvider } from "@mui/material";
+import Calender from "./components/Calender/Calender"
 
 const Dashboard = React.lazy(() => import("./components/Dashboard/Dashboard"));
 // const Map = React.lazy(() => import("./components/common/GoogleMaps/Map"));
@@ -234,6 +235,7 @@ function App() {
                     />
                     {/* <Route path="/dashboard/events" element={<Map />} /> */}
                   </Routes>
+                  {user && <Calender user={user} />}
                 </div>
               </main>
               <Footer user={user} setUser={setUser} />

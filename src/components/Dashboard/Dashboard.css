@@ -4,9 +4,9 @@
   align-items: center;
   flex-direction: column;
   margin: 0rem 30px;
-  background-color: #fff;
+  /* background-color: #fff; */
   border-radius: 10px;
-  padding: 1.5rem;
+  padding:  0 1.5rem ;
   gap: 1.5rem;
 }
 
@@ -23,8 +23,11 @@
   padding: 1rem 1.5rem;
   box-sizing: border-box;
   width: 100%;
-  border: 1px rgba(160, 87, 255, 0.66) solid;
+  border: 1px #282828 solid;
   border-radius: 10px;
+  background-color: #fff;
+  min-width: 450px;
+  
 }
 
 .dashboard-friend-card-container-this-month {

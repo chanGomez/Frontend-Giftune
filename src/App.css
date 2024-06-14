@@ -62,8 +62,11 @@ main {
 .page-content {
   margin: 3rem;
   min-height: 100vh;
-  display: grid;
+  /* display: grid;
   grid-template-columns: 3fr 9fr;
+  width: 1150px; */
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr;
   width: 1150px;
 }
 
