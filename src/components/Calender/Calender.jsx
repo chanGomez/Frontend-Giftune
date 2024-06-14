@@ -39,8 +39,27 @@ function fakeFetch(date, { signal }) {
     };
   });
 }
+function getCurrentFormattedDate() {
+  // Get the current timestamp
+  const now = Date.now();
 
-const initialValue = dayjs("2022-04-17");
+  // Create a Date object from the timestamp
+  const date = new Date(now);
+
+  // Extract the year, month, and day
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based, so we add 1
+  const day = String(date.getDate()).padStart(2, "0");
+
+  // Format the date as YYYY-MM-DD
+  const formattedDate = `${year}-${month}-${day}`;
+
+  return formattedDate;
+}
+
+console.log(getCurrentFormattedDate());
+
+const initialValue = dayjs(getCurrentFormattedDate());
 
 function ServerDay(props) {
   const { highlightedDays = [], day, outsideCurrentMonth, ...other } = props;

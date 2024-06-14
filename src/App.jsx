@@ -235,7 +235,7 @@ function App() {
                     />
                     {/* <Route path="/dashboard/events" element={<Map />} /> */}
                   </Routes>
-                  {user && <Calender user={user} />}
+                  {/* {user && <Calender user={user} />} */}
                 </div>
               </main>
               <Footer user={user} setUser={setUser} />
