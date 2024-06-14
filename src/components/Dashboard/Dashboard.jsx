@@ -27,7 +27,7 @@ function Dashboard() {
       try {
         setIsLoading(true);
         setDashboardId(user?.id);
-        let response = await getUserProfile(dashboardId);
+        let response = await getUserProfile(user.id);
         setDashboardUser(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -36,15 +36,16 @@ function Dashboard() {
     }
   
   useEffect(() => {
-
     if (user === null) {
       navigate("/login");
     }
     fetchData();
     setFriendsData(dashboardUser.friends);
+    console.log(dashboardUser);
     // eslint-disable-next-line
   }, [dashboardId]);
 
+  
   // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
   const upcomingDateCalc = (dob) => {
     // DOB date
@@ -99,7 +100,8 @@ function Dashboard() {
     );
   });
 
-  // console.log(friendsList);
+console.log(sortedfriendList);
+  console.log(dashboardUser.friends);
 
   return (
     <>
@@ -109,8 +111,10 @@ function Dashboard() {
           <div>
             <Spinner />
           </div>
+        ) : dashboardUser.friends ? (
+          friendsList
         ) : (
-          friendsList && <NoFriendsFound />
+          <NoFriendsFound />
         )}
 
         {/* <p className="dashboard-heading">Upcoming Birthdays</p> */}
@@ -120,7 +124,7 @@ function Dashboard() {
 }
 
 function Friend({ friendDetails, dashboardUserId, currentDate }) {
-  let { user_id, user_picture, first_name, last_name, dobInMili } =
+  let { user_id, user_picture, display_name, dobInMili } =
     friendDetails;
   let dayNumOfUpcomingBirthDay = new Date(dobInMili).toLocaleDateString(
     "en-US",
@@ -153,7 +157,6 @@ function Friend({ friendDetails, dashboardUserId, currentDate }) {
   }
 
   let sign = calculateZodiacSign(dobInMili, user_id);
-  let userPic = user_picture.includes("http") ? user_picture : user_picture;
 
   return (
     <div className={friendContentClassNames()} key={user_id}>
@@ -172,19 +175,17 @@ function Friend({ friendDetails, dashboardUserId, currentDate }) {
             {/* <div className="dashboard-img-placeholder"> */}
             <img
               className="dashboard-img-placeholder"
-              src={userPic}
+              src={user_picture}
               alt="profile_img"
             />
             {/* </div> */}
-            <p className="dashboard-card-name">
-              {first_name} {last_name}{" "}
-            </p>
+            <p className="dashboard-card-name">{display_name}</p>
           </div>
           <p className="dashboard-card-text">
             {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}{" "}
           </p>
-          <p className="dashboard-card-text-zodiac" key={sign.zodiacSign.key}>
-            Zodiac: {sign.zodiacSign}
+          <p className="dashboard-card-text-zodiac" key={sign?.zodiacSign.key}>
+            Zodiac: {sign?.zodiacSign}
           </p>
         </div>
       </Link>
