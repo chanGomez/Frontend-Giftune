@@ -28,7 +28,7 @@ const style = {
   padding: 1,
 };
 
-export default function RecipeReviewCard({ friendDetails, dashboardUserId, currentDate }) {
+export default function RecipeReviewCard({ friendDetails, user, currentDate }) {
       let { user_id, user_picture, display_name, dobInMili } = friendDetails;
       let dayNumOfUpcomingBirthDay = new Date(dobInMili).toLocaleDateString(
         "en-US",
@@ -67,7 +67,7 @@ export default function RecipeReviewCard({ friendDetails, dashboardUserId, curre
 
   return (
     <Card sx={style} key={user_id}>
-      <Link to={`/dashboard/${dashboardUserId}/friends/${user_id}`}>
+      <Link to={`/dashboard/${user.id}/friends/${user_id}`}>
         <CardHeader
           avatar={
             <img
@@ -79,7 +79,7 @@ export default function RecipeReviewCard({ friendDetails, dashboardUserId, curre
           action={
             <Tooltip title={sign?.zodiacName} arrow>
               <IconButton>
-                <Typography color="text.secondary" sx>
+                <Typography color="text.secondary">
                   {sign?.zodiacSign}
                 </Typography>
               </IconButton>

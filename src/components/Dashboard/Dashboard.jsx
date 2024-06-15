@@ -18,19 +18,19 @@ import Calender from "../Calender/Calender"
 function Dashboard() {
   let navigate = useNavigate();
   const [user, setUser] = useState(pullUserFromLocal());
-  const [dashboardId, setDashboardId] = useState(user.id);
   const [dashboardUser, setDashboardUser] = useState({});
   const [ isloading, setIsLoading]= useState(false)
   let currentDate = new Date(Date.now()); // Time from system
   currentDate.setTime(currentDate.getTime() + currentDate.getTimezoneOffset() * 60 * 1000);
-  const { setFriendsData } = useContext(FriendsContext);
+  // const { setFriendsData } = useContext(FriendsContext);
+  const [friendsData, setFriendsData] = useState({})
 
     async function fetchData() {
       try {
         setIsLoading(true);
-        setDashboardId(user?.id);
         let response = await getUserProfile(user.id);
         setDashboardUser(response.data);
+        setFriendsData(response.data.friends);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -42,10 +42,8 @@ function Dashboard() {
       navigate("/login");
     }
     fetchData();
-    setFriendsData(dashboardUser.friends);
-    console.log(dashboardUser);
     // eslint-disable-next-line
-  }, [dashboardId]);
+  }, [user.id]);
 
   
   // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
@@ -95,39 +93,39 @@ function Dashboard() {
       <div key={index}>
         <FriendListDashboardMui
           friendDetails={friendDetails}
-          dashboardUserId={dashboardId}
+          user={user}
           currentDate={currentDate}
         />
       </div>
     );
   });
 
-console.log(sortedfriendList);
-  console.log(dashboardUser.friends);
+console.log(friendsList);
+console.log(dashboardUser.friends);
 
   return (
     <>
-      {/* {user && <SideBarNavMui user={user} />} */}
-      <div >
-        {isloading ? (
+      {isloading ? (
+        <div>
+          <Spinner />
+        </div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
+          <div className="dashboard-container">
+            {dashboardUser?.friends?.length ? friendsList : <NoFriendsFound />}
+          </div>
           <div>
-            <Spinner />
-          </div>
-        ) : dashboardUser.friends ? (
-          <div style={{display: "flex", justifyContent: "space-between", width: '100%'}}>
-           <div className="dashboard-container">
-            {friendsList}
-            </div>
-            <div>
             <Calender />
-           </div>
           </div>
-        ) : (
-          <NoFriendsFound />
-        )}
-
-        {/* <p className="dashboard-heading">Upcoming Birthdays</p> */}
-      </div>
+        </div>
+      )}
+      {/* <p className="dashboard-heading">Upcoming Birthdays</p> */}
     </>
   );
 }

@@ -6,11 +6,16 @@ function NoFriendsFound() {
   return (
     <div
       style={{
-        margin: 20,
         textAlign: "center",
         // display: "flex",
         // flexDirection: "column",
         // alignItems: "center",
+        backgroundColor: "white",
+        border: "1px solid #282828",
+        borderRadius: 16,
+        boxShadow: "none",
+        minWidth: 450,
+        padding: 1,
       }}
     >
       <img
